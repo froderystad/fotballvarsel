@@ -1,0 +1,17 @@
+{
+  "name": "fotballvarsel",
+  "version": "0.1.0",
+  "description": "Varsler abonnenter per e-post om endringer på Skeid.no",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/froderystad/fotballvarsel"
+  },
+  "license": "MIT"
+}
