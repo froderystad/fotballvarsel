@@ -1,0 +1,1 @@
+console.log("Running periodical check for new articles");
