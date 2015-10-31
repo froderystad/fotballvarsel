@@ -17,5 +17,8 @@ describe('Page HTML Parser', function() {
     it('should have an id', function () {
       assert.isNumber(articles[0].id);
     });
+    it('should have a hash', function () {
+      assert.notEqual(undefined, articles[0].hash);
+    });
   });
 });
