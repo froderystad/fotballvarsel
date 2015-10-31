@@ -1,0 +1,1560 @@
+<!DOCTYPE html><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+
+	<link rel="shortcut icon" href="/kx/192/_layout/favicon.ico" type="image/x-icon"> 
+
+	<meta property="og:title" content="Skeid"/> 
+	<meta property="og:type" content="website"/> 
+	<meta property="og:image" content="http://skeid.no/kx/_layout/theme/PARACLUB/fb_site_image.png"/> 
+	<meta property="og:url" content="http://skeid.no/portal/theme/team/main.do?teamId=10489"/> 
+	<meta property="og:site_name" content="www.skeid.no"/> 
+	<meta property="og:description" content="Besøk våre sider for siste nytt!"/>
+	<meta property="fb:admins" content="530594011"/> 
+	
+		
+	<meta http-equiv="content-type" content="text/html;charset=ISO-8859-1" />
+
+	<link rel="shortcut icon" href="/kx/192/_layout/favicon.ico" type="image/x-icon"> 
+
+	<script type="text/javascript" src="/portal/javascript/jwplayer/jwplayer.js"></script>
+
+	
+    <link rel="stylesheet" href="/kx/_layout/javascript/jquery/css/ui-lightness/jquery-ui-1.9.2.custom.min.css" />
+    <script src="/kx/_layout/javascript/jquery/js/jquery-1.8.3.js"></script>
+    <script src="/kx/_layout/javascript/jquery/js/jquery-ui-1.9.2.custom.min.js"></script>
+
+
+	<script language="JavaScript" type="text/javascript" src="/kx/_layout/javascript/jquery/development-bundle/ui/i18n/jquery.ui.datepicker-no.js"></script> 
+	<script language="JavaScript" type="text/javascript" src="/kx/_layout/javascript/jquery/development-bundle/ui/i18n/jquery.ui.datepicker-fr.js"></script> 
+
+ <script type="text/javascript" src="/portal/javascript/overlibmws/overlibmws.js" ></script> 
+	
+	<style>
+	#ui-datepicker-div {
+  	z-index: 9999999!important;
+	}
+  	</style>
+	<script>
+	function createCal(id) {
+		$(function() {
+			$("#"+id).datepicker({ dateFormat: "dd.mm.yy",showWeek: true,showButtonPanel: true });
+			$("#"+id).datepicker( "option",
+				$.datepicker.regional["no"] );
+		});
+	}
+	function createCalShort(id) {
+		$(function() {
+			$("#"+id).datepicker({ showWeek: true });
+			$("#"+id).datepicker( "option",
+				$.datepicker.regional["no"] );
+			$("#"+id).datepicker( "option",
+				"dateFormat", "dd.mm.y" );
+		});
+	}
+	function createCalAltDF(id) {
+		$(function() {
+			$("#"+id).datepicker({ dateFormat: "yy-mm-dd",showWeek: true });
+			$("#"+id).datepicker( "option",
+				$.datepicker.regional["no"] );
+			$("#"+id).datepicker( "option",
+				"dateFormat", "yy-mm-dd" );
+		});
+	}
+
+		function createCalButtonOnly(id) {
+		$(function() {
+			$("#"+id).datepicker({ showWeek: true,
+			    showOn: 'button', 
+      			buttonImage: '/kx/_layout/icons/activity_calendar.gif', 
+      			buttonImageOnly: true,
+      			onClose: function(dateText, inst) {  } });
+			$("#"+id).datepicker( "option",
+				$.datepicker.regional["no"] );
+			$("#"+id).datepicker( "option",
+				"dateFormat", "yy-mm-dd" );
+		});
+	}
+
+	</script>	
+	<script type="text/javascript">
+    function setActiveSport(sportId) {
+    	$.ajax({
+            'async': false,
+            'type': 'POST',
+            'url': '/portal//setSport.do?setSportId='+sportId
+        });
+    }
+    
+    function is_touch_device() {
+    	  return !!('ontouchstart' in window);
+    	}
+	</script>
+
+	
+	<style type="text/css">
+		@import url(/kx/_layout/theme/PARACLUB/stylesheets/ddsmoothmenu.css);		/*link to the CSS file for dropdown menu */
+		@import url(/kx/_layout/theme/PARACLUB/stylesheets/main_styles.css);			/*link to the main CSS file */
+		@import url(/kx/_layout/theme/PARACLUB/stylesheets/tipsy.css);				/*link to the CSS file for tips */
+		@import url(/kx/_layout/theme/PARACLUB/stylesheets/nivo-slider.css);		/*link to the CSS file for nivo-slider */
+		@import url(/kx/_layout/theme/PARACLUB/stylesheets/styles.css);			/*link to the main CSS file */
+	</style>
+	<link rel="stylesheet" href="/kx/_layout/theme/PARACLUB/stylesheets/main_styles.css" type="text/css" title="orange" media="screen" />
+
+	
+	
+<script type="text/javascript">
+    function keepSessionAlive() {
+        $.post("/portal/ping.do");
+    }
+
+    window.setInterval("keepSessionAlive()", 1200000);
+</script>
+
+
+	<style type="text/css">#header_background {background:url(/kx/_layout/theme/PARACLUB/site/192/Topp-bakgrunn_SKEID.jpg) top center no-repeat}
+#f_sidebar {background:url(/kx/_layout/theme/PARACLUB/site/192/Bunn-bakgrunn_SKEID.jpg) top center no-repeat}
+.messageicon1 {background-image:url(/kx/_layout/theme/PARACLUB/images/icon1.png)}
+#MainNav {background:url(/kx/_layout/theme/PARACLUB/images/main_nav_px.gif)}
+#organizationName a {font-family:arial}
+#menu li a.selected,#menu li a:hover {background:rgba(0,0,0,0.9)}
+a.logo {margin-top:16px}
+.nivo-caption {background:rgba(0,0,0,0.9)}
+#menu ul.ddsmoothmenu li li {background:rgba(0,0,0,0.9)}
+a.big_btn {width:103px}
+a.big_btn {font-size:13}
+a.big_btn {min-height: 20px}
+#MainNav {margin-top:0px}
+a.logo {margin-left:0px}
+a.big_btn {text-align:center}
+#inner_container {background-color:rgba(255,255,255,0)}
+#MainNav {background-color:#E7E7E7}
+#MainNav {margin-top:0px}
+#team_name a {background-color:rgba(30,30,30,0.8)}
+</style>
+
+	<script language="JavaScript" type="text/javascript" src="/kx/_layout/theme/javascript/jquery.main.js"></script> 
+		
+	<!-- Cufon Font Generator Plugin -->
+	<!-- jQuery Watermark Plugin -->
+	<script type="text/javascript" src="/kx/_layout/theme/PARACLUB/js/jquery.watermarkinput.js"></script>
+	
+	<!-- DropDown Menu Plugin -->
+	<script type="text/javascript" src="/kx/_layout/theme/PARACLUB/js/ddsmoothmenu.js"></script> 
+	
+	<!-- jQuery Image Fading plugin -->
+	<script type="text/javascript" src="/kx/_layout/theme/PARACLUB/js/jquery.color.js"></script>
+	
+	
+	<!-- jQuery TinyCarousel -->
+	<script type="text/javascript" src="/kx/_layout/theme/PARACLUB/js/jquery.tinycarousel.min.js"></script>
+	
+	<!-- jQuery Tipsy -->
+	<script type="text/javascript" src="/kx/_layout/theme/PARACLUB/js/jquery.tipsy.js"></script>
+	
+	<!-- jQuery autoAlign -->
+	<script type="text/javascript" src="/kx/_layout/theme/PARACLUB/js/jquery.autoAlign.js"></script>
+	
+	<!-- Nivo Slider -->
+	<script type="text/javascript" src="/kx/_layout/theme/PARACLUB/js/nivo-slider/jquery.nivo.slider.js"></script>
+	<script type="text/javascript">
+	jQuery(document).ready(function () {
+			$('#nivo-slider').nivoSlider({
+				effect:'random', //Specify sets like: 'fold,fade,sliceDown'
+				slices:10,
+				animSpeed:400,
+				pauseTime:6000,
+				directionNav:true, //Next and Prev
+				directionNavHide:false,
+				controlNav:true //1,2,3...
+			});
+		});
+	</script>
+
+	<script src="/kx/_layout/theme/javascript/jquery.bxSlider.min.js" type="text/javascript"></script>
+	<script src="/kx/_layout/theme/javascript/jquery.easing.1.3.js" type="text/javascript"></script>
+	
+	<script type="text/javascript" src="/kx/_layout/theme/PARACLUB/js/custom.js"></script>
+
+	<script type="text/javascript" src="/kx/_layout/theme/javascript/vegas/jquery.vegas.js"></script>
+	<link rel="stylesheet" type="text/css" href="/kx/_layout/theme/javascript/vegas/jquery.vegas.css" />
+
+<script language="JavaScript" type="text/javascript">
+    
+    $( function() {
+    $.vegas('slideshow',{
+    	delay:8000,
+    	loading:false,
+    	  backgrounds:[
+						
+    	               { src:'/kx/192/galleries/3559/skeid_nytt_bilde.jpg', fade:3000 }    	
+    	               ,
+    	       		
+    	             ]
+    })('overlay', {
+    src:'/kx/_layout/theme/javascript/vegas/overlays/01.png'
+    });
+    });
+    $.vegas('overlay', {
+    	  opacity:0.3
+    	});
+</script>	
+		
+	<script language="JavaScript" type="text/javascript" src="/kx/_layout/theme/javascript/jquery.cycle.all.js"></script> 
+
+<script type="text/javascript">
+$.fn.cycle.defaults.timeout = 6000;
+</script>
+
+
+ 
+		<link rel="stylesheet" type="text/css" href="/kx/_layout/theme/javascript/ResponsiveImageGallery/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/kx/_layout/theme/javascript/ResponsiveImageGallery/css/elastislide.css" />
+		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&v1' rel='stylesheet' type='text/css' />
+		<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css' />
+		<noscript>
+			<style>
+				.es-carousel ul{
+					display:block;
+				}
+			</style>
+		</noscript>
+		<script id="img-wrapper-tmpl" type="text/x-jquery-tmpl">	
+			<div class="rg-image-wrapper">
+				{{if itemsCount > 1}}
+					<div class="rg-image-nav">
+						<a href="#" class="rg-image-nav-prev">Previous Image</a>
+						<a href="#" class="rg-image-nav-next">Next Image</a>
+					</div>
+				{{/if}}
+				<div class="rg-image"></div>
+				<div class="rg-loading"></div>
+				<div class="rg-caption-wrapper">
+					<div class="rg-caption" style="display:none;">
+						<p></p>
+					</div>
+				</div>
+			</div>
+		</script>
+	<link rel="stylesheet" media="screen" type="text/css" href="/kx/_layout/theme/javascript/colorbox/colorbox.css" />
+	<script type="text/javascript" src="/kx/_layout/theme/javascript/colorbox/jquery.colorbox-min.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            jQuery('.exerciselink').colorbox({iframe:true, innerWidth:690, innerHeight:320,opacity:0.5 , rel:'group1'});
+        });
+    </script>
+    	
+    
+    
+	<title>Skeid Gutter 8 år Gutt 2007 - hele årgangen</title>
+</head>
+<body>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/nb_NO/all.js#xfbml=1&appId=274887589223306";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+<!-- Begin Container -->
+	<div class="ad-topboard">
+		
+	</div>
+	<div id="outer_container">
+		
+	<div id="header_background"></div>
+	<div id="inner_container">
+	<!-- Begin Header -->
+	<div id="header">
+		<!-- Site Logo -->
+		<a href="javascript:setActiveSport('-1');location.href='/portal/theme/organization/main.do?siteId=192';" class="logo"><img src="/kx/_layout/theme/PARACLUB/site/192/Skeid_100_aar_logo_web.png"/></a>
+		<div class="clear"></div>
+	<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+<script>
+function login(){
+document.getElementById("menu").style.display='none';
+document.getElementById("login").style.display='';
+}
+</script>
+
+
+	<style type="text/css">#header_background {background:url(/kx/_layout/theme/PARACLUB/site/192/Topp-bakgrunn_SKEID.jpg) top center no-repeat}
+#f_sidebar {background:url(/kx/_layout/theme/PARACLUB/site/192/Bunn-bakgrunn_SKEID.jpg) top center no-repeat}
+.messageicon1 {background-image:url(/kx/_layout/theme/PARACLUB/images/icon1.png)}
+#MainNav {background:url(/kx/_layout/theme/PARACLUB/images/main_nav_px.gif)}
+#organizationName a {font-family:arial}
+#menu li a.selected,#menu li a:hover {background:rgba(0,0,0,0.9)}
+a.logo {margin-top:16px}
+.nivo-caption {background:rgba(0,0,0,0.9)}
+#menu ul.ddsmoothmenu li li {background:rgba(0,0,0,0.9)}
+a.big_btn {width:103px}
+a.big_btn {font-size:13}
+a.big_btn {min-height: 20px}
+#MainNav {margin-top:0px}
+a.logo {margin-left:0px}
+a.big_btn {text-align:center}
+#inner_container {background-color:rgba(255,255,255,0)}
+#MainNav {background-color:#E7E7E7}
+#MainNav {margin-top:0px}
+#team_name a {background-color:rgba(30,30,30,0.8)}
+</style>
+	
+	
+	
+	<div id="team_name"><a href="/portal/theme/team/main.do?teamId=10489">Skeid Gutter 8 år Gutt 2007 - hele årgangen</a></div>
+	
+	<!-- Start Main Nav -->
+	<div id="MainNav">
+		<a href="/portal/theme/organization/main.do?siteId=192" title="Home" class="home_btn"><img  src="/kx/_layout/theme/PARACLUB/images/icon_home.gif" width="17" height="19" alt="Home" /></a>
+		<div id="menu">
+			<ul class="ddsmoothmenu">
+			
+				<li ><a href="javascript:login();"><span>Logg Inn</span></a>
+					
+				</li>
+			
+				<li ><a href="/portal/public/showContentCategory.do?id=948508609"><span>Seriekamper 2015</span></a>
+					
+					<ul>
+						
+		                    
+							
+		                    <li><a class="" href="/portal/public/showContentCategory.do?id=948508614"><span>Skeid Bjørn</span></a>
+		                    	
+							</li>
+							
+						
+		                    
+							
+		                    <li><a class="" href="/portal/public/showContentCategory.do?id=948508615"><span>Skeid Jerv</span></a>
+		                    	
+							</li>
+							
+						
+		                    
+							
+		                    <li><a class="" href="/portal/public/showContentCategory.do?id=948508616"><span>Skeid Gaupe</span></a>
+		                    	
+							</li>
+							
+						
+		                    
+							
+		                    <li><a class="" href="/portal/public/showContentCategory.do?id=948508617"><span>Skeid Ulvene</span></a>
+		                    	
+							</li>
+							
+						
+					</ul>
+					
+				</li>
+			
+				<li ><a href="/portal/public/showContentCategory.do?id=948507017"><span>Bilder G2007</span></a>
+					
+				</li>
+			
+
+			</ul>
+		</div>
+		<div id="login" style="display:none;margin:0px;padding:0px;text-align:left;z-index:10000;position:relative">
+		<form name="no.sc.kx.security.user" method="post" action="/portal/themeLogin.do">
+			<input type="hidden" name="j_hidden" value="true">
+			<input type="hidden" name="clientResolution">
+			<table align="right" style="margin:0px" cellspacing="">
+			<tr>
+			<td><input type="text" class="loginboxes" name="j_username"  style="vertical-align:middle;background:#fff url('/kx/_layout/username_bg.gif') no-repeat" onfocus="this.style.background='#fff';" onblur="if(this.value=='') this.style.background='#fff url(/kx/_layout/username_bg.gif) no-repeat'"></td>
+			<td><input type="password" class="loginboxes" name="j_password" style="vertical-align:middle;background:#fff url('/kx/_layout/password_bg.gif') no-repeat" onchange="javascript:document.forms[0].clientResolution.value=screen.width+'x'+screen.height;" onfocus="this.style.background='#fff';" onblur="if(this.value=='') this.style.background='#fff url(/kx/_layout/password_bg.gif) no-repeat'"></td>
+			<td><input id="loginbutton" type="image" style="height:15px;vertical-align:middle" src="/kx/_layout/theme/login.png"></td>
+			</tr>
+			</table>
+		</form>
+		</div>
+		<!-- Start Social Icons -->
+		<div>
+		<ul class="social">
+			
+			<li><a target="fb" href="https://www.facebook.com/skeid.fotball" class="ico_facebook" title="Facebook"></a></li>
+			
+			<li><a href="/portal/public/clubNewsFeed.do?rows=10&siteId=192" class="ico_rss" title="RSS Feed"></a></li>
+			
+			<li><a target="twitter" href="https://twitter.com/skeidfotball" class="ico_twitter" title="Twitter"></a></li>
+			
+			
+			<li><a target="googleplus" href="https://plus.google.com/+skeid/posts" class="ico_googleplus" title="Google+"></a></li>
+			
+
+		</ul>
+		</div>
+		<!-- End Social Icons -->
+
+	</div>
+	<!-- End Main Nav -->	
+
+	</div>
+	<!-- End Header -->
+	<!-- Start Slider -->
+	<div id="content_wrapper_sbl">
+	
+	<div id="content_wrapper_lower_left">
+	<div style="width:650px;text-align:right;padding-top:5px">
+		<a href="/portal//public/newsArchive.do?rows=100&siteId=192" class="elitefootball_feed_archive">Nyhetsarkiv</a>
+	</div>
+	
+	<div id="fb_like">
+		<div class="fb-like" data-href="http://skeid.no/portal/theme/team/main.do?teamId=10489" data-send="true" data-width="960" data-show-faces="true" data-font="arial"></div>
+	</div>
+	
+	
+				<div class="news_boxes">
+					
+					<div class="featured">
+						<h2>Treningene fortsetter etter høstferien. MERK tider!</h2>
+						
+						<p>Vi tar høstferie, men fortsetter uken etter ferien.</p>
+						<p>24.09.2015  | Thomas Brørs</p>
+						<a href="/portal/theme/team/news/show.do?id=9332768" title="Les mer" class="btn">Les mer</a>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="featured">
+						<h2>3v3 Kjelsås-cup 2015 - 12.-13. september.</h2>
+						
+						<p>Ta med ditt barn og noen kamerater til Kjelsås 3v3 Cup. Om foreldre har lyst er det anledning til å melde på ett eller flere lag på Kjelsås 3v3.</p>
+						<p>01.09.2015 15:46 | Thomas Brørs</p>
+						<a href="/portal/theme/team/news/show.do?id=9329848" title="Les mer" class="btn">Les mer</a>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="clear"></div>
+				</div>
+	<div class="ad-netboard1">
+	
+	
+	</div>
+				<div class="news_boxes">
+					
+					<div class="featured">
+						<h2>Oppsummering foreldremøte G2007. Avholdt 01.09.2015</h2>
+						
+						<p>Noen hovedpunkter som alle må være oppmerksomme på.</p>
+						<p>24. Aug  | Thomas Brørs</p>
+						<a href="/portal/theme/team/news/show.do?id=9328742" title="Les mer" class="btn">Les mer</a>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="featured">
+						<h2>Oppstart av treninger og kamper høst 2015 for G2007</h2>
+						
+						<p>Treninger starter fom. mandag 17.08. Seriekampene starter fra samme dato.</p>
+						<p>14. Aug 11:55 | Thomas Brørs</p>
+						<a href="/portal/theme/team/news/show.do?id=9327371" title="Les mer" class="btn">Les mer</a>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="featured">
+						<h2>Shorts og strømper til Skeiddrakten</h2>
+						
+						<p>Link til korrekt type shorts og strømper til den røde Skeiddrakten.</p>
+						<p>18. Jun  | Thomas Brørs</p>
+						<a href="/portal/theme/team/news/show.do?id=9310923" title="Les mer" class="btn">Les mer</a>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="featured">
+						<h2>Treningstider sesongen 2015</h2>
+						
+						<p>OBS: Alle må ta med EGEN ball til treningene!
+Det er alltid trening på man.-ons. selv om enkelte spiller kamper.</p>
+						<p>17. Jun  | Thomas Brørs</p>
+						<a href="/portal/theme/team/news/show.do?id=9310904" title="Les mer" class="btn">Les mer</a>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="clear"></div>
+				</div>
+	<!-- End Slider -->
+	</div>
+	<div class="clear"></div>
+	
+	<div id="content_wrapper_fbcomments">
+		<div class="fb-comments" data-href="http://skeid.no/portal/theme/team/main.do?teamId=10489" data-num-posts="5" data-width="600"></div>
+	</div>
+	
+	</div>
+	<div id="content_wrapper_sbr">
+	<div id="content">
+												
+							<!-- accordion -->
+							<script>
+								$(function() {
+									var icons = {
+										header: "ui-icon-circle-arrow-e",
+										headerSelected: "ui-icon-circle-arrow-s"
+									};
+									$( "#visit_teamaccordion" ).accordion({
+										collapsible: true,
+										active:false,
+										icons: icons
+									});
+								});
+							</script>
+							<div style="margin-bottom:20px" id="visit_teamaccordion">
+								<h3><a href="#">Besøk våre lagsider</a></h3>
+								<div>
+									
+										<div class="sport_name_teamlist">Fotball</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=23839">
+												Skeid Fotball Fritidsordning Fotballskole høstferie 2015</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=18063">
+												Skeid Fotball Fritidsordning Skeid Fotballskole august 2015</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=17936">
+												Skeid Fotball Fritidsordning Skeid Fotballskole juni 2015</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=11852">
+												Skeid Fotball Fritidsordning Skeidakademiet 2015</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=23359">
+												Skeid Fotball Fritidsordning STT - høstsyklus 1 - 2015</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=18702">
+												Skeid Fotball Fritidsordning STT syklus april-juni</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=11854">
+												Skeid Fotball Fritidsordning Vinterakademiet</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=19957">
+												Skeid Gutter 5 år VTF Gutt 2010</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=19958">
+												Skeid Jenter 5 år VTF Jente 2010</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=16047">
+												Skeid Gutter 6 år VTF Gutt 2009</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=16048">
+												Skeid Jenter 6 år VTF Jente 2009</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=13039">
+												Skeid Gutter 7 år VTF Gutt 2008</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=13040">
+												Skeid Jenter 7 år VTF Jente 2008</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10489">
+												Skeid Gutter 8 år Gutt 2007 - hele årgangen</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=11640">
+												Skeid Jenter 8 år Jente 2007 - hele årgangen</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=16354">
+												Skeid Keeperskole Keepere G13-19</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10159">
+												Skeid Gutter 9 år Gutter 2006 - hele årgangen</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10170">
+												Skeid Jenter 9 år Jenter 2006</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10158">
+												Skeid Gutter 10 år Gutter 2005 - hele årgangen</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10169">
+												Skeid Jenter 10 år Jenter 2005</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=18109">
+												Skeid Gutter 11 år Gutter 2004 - samlet årgang</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10168">
+												Skeid Jenter 11 år Jenter 2004</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10167">
+												Skeid Jenter 12 år Jenter 2003</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10184">
+												Skeid Gutter 13 år G2002</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10166">
+												Skeid Jenter 13 år J2002</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=19179">
+												Skeid SPU13+ Infoside G-15-19</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10133">
+												Skeid Damer Damer A-lag</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=16049">
+												Skeid Damer B-Lag Damer 7er</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=13350">
+												Skeid Gutter 14 år G2001</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10194">
+												Skeid Jenter 14 år J2001</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10196">
+												Skeid Gutter 15 år G2000 - Hele årgangen</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10171">
+												Skeid D-Lag Menn 8.div</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10376">
+												Skeid Gutter 16 år Gutter 99</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10163">
+												Skeid Jenter 16 år Jenter 1999/2000</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10132">
+												Skeid C-Lag Menn 5 divisjon </a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10160">
+												Skeid JR-Damer Junior Jenter</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10208">
+												Skeid Junior G18</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10212">
+												Skeid Junior Junior Elite</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10151">
+												Skeid Junior Junior Lokal</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10131">
+												Skeid A-Lag Skeid Fotball</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10136">
+												Skeid Old-Boys Old Boys 33+</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10213">
+												Skeid Veteran Veteran 40+</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10214">
+												Skeid Administrasjon Ansatte</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10215">
+												Skeid Administrasjon Dommere</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10134">
+												Skeid Administrasjon Hovedstyret</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=10490">
+												Skeid Administrasjon passive medlemmer</a>
+											</div>
+										
+											<div>
+												<a class="team_name_teamlist" href="/portal/theme/team/main.do?teamId=23327">
+												Skeid Administrasjon Setesponsorer</a>
+											</div>
+										
+									
+								</div>
+							</div>
+						
+						
+						
+							
+						
+						
+						<!-- service -->
+						<script>
+							$(function() {
+								var icons = {
+									header: "ui-icon-circle-arrow-e",
+									headerSelected: "ui-icon-circle-arrow-s"
+								};
+								$( "#teamaccordion" ).accordion({
+									collapsible: true,
+									active:0,
+									icons: icons,
+									heightStyle: "content"
+								});
+							});
+						</script>
+						<a class="colored" href="webcal://skeid.no/portal/public/eventsOverviewCal.do?siteId=192&teamList=10489">Legg lagkalender til i din Outlook/iCal/Iphone</a>
+						
+						<link rel="stylesheet" href="/kx/_layout/theme/javascript/eventCalendar2/css/eventCalendar.css">
+						<link rel="stylesheet" href="/kx/_layout/theme/javascript/eventCalendar2/css/eventCalendar_theme_responsive.css">
+						<div style="margin-top:5px" id="eventCalendarLocale"></div>
+						<script>  
+							$(document).ready(function() {  
+								$("#eventCalendarLocale").eventCalendar({
+									eventsjson: '/portal/public/eventsOverviewJson.do?orgId=192&teamId=10489&teamSeason=2015',
+									eventsLimit: 5,
+									monthNames: [ "Januar", "Februar", "Mars", 
+										"April", "Mai", "Juni",
+										"Juli", "August", "September", 
+										"Oktober", "November", "Desember" ],
+									dayNames: [ 'Søndag','Mandag','Tirsdag','Onsdag',
+										'Torsdag','Fredag','Lørdag' ],
+									dayNamesShort: [ 'Søn','Man','Tir',
+									'Ons', 'Tor','Fre','Lør' ],		
+									txt_noEvents: "Ingen aktiviteter",
+									txt_SpecificEvents_prev: "Aktiviteter ",
+									txt_SpecificEvents_after: ":",
+									txt_next: "Neste",
+									txt_prev: "Forrige",
+									txt_NextEvents: "Kommende aktiviteter (5 neste):",
+									txt_GoToEventUrl: "Les mer",
+									showDescription: true
+								});  
+							});  
+						</script> 
+						<script src="/kx/_layout/theme/javascript/eventCalendar2/js/jquery.eventCalendar.js" type="text/javascript"></script>
+						<style type="text/css"></style>
+						
+						<div id="teamaccordion">
+							
+							<h3><a href="#">Støtteapparatet</a></h3>
+							<div>
+								
+								<div id="coachinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Kjetil Rohde<br>
+									<b>Hovedtrener</b><br>
+									Mobil: 98430427<br>
+									<a href="mailto:ik@skeid.no">ik@skeid.no</a>
+								</div>
+								
+								<div id="coachinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Thomas Brørs<br>
+									<b>Hovedlagleder</b><br>
+									Mobil: 41522077<br>
+									<a href="mailto:thbro@online.no">thbro@online.no</a>
+								</div>
+								
+								<div id="coachinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Silje Nesting<br>
+									<b>Trener, Lagleder</b><br>
+									Mobil: <br>
+									<a href="mailto:ingvild.nesting@yahoo.no">ingvild.nesting@yahoo.no</a>
+								</div>
+								
+								<div id="coachinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Lars Aarhus<br>
+									<b>Trener</b><br>
+									Mobil: 97666517<br>
+									<a href="mailto:lars@rsssf.no">lars@rsssf.no</a>
+								</div>
+								
+								<div id="coachinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Jarle Edler<br>
+									<b>Trener</b><br>
+									Mobil: 41505545<br>
+									<a href="mailto:jed@binghodneland.no">jed@binghodneland.no</a>
+								</div>
+								
+								<div id="coachinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Amarildo Nascimento Lopes<br>
+									<b>Trener</b><br>
+									Mobil: 908 20 241<br>
+									<a href="mailto:amarildo.lopes@telenor.com">amarildo.lopes@telenor.com</a>
+								</div>
+								
+								<div id="coachinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Jørgen Bjerke<br>
+									<b>Trener</b><br>
+									Mobil: 95876462<br>
+									<a href="mailto:jorgen.bjerke@mccann.no">jorgen.bjerke@mccann.no</a>
+								</div>
+								
+								<div id="coachinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Kristian Berre<br>
+									<b>Trener</b><br>
+									Mobil: 47270540<br>
+									<a href="mailto:kristianberre@hotmail.com">kristianberre@hotmail.com</a>
+								</div>
+								
+								<div id="coachinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Tellef Ingvaldstad<br>
+									<b>Trener</b><br>
+									Mobil: 95118247<br>
+									<a href="mailto:tellef@gravco.no">tellef@gravco.no</a>
+								</div>
+								
+								<div id="coachinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Harald Åker<br>
+									<b>Trener</b><br>
+									Mobil: 90982842<br>
+									<a href="mailto:harald.aaker@me.com">harald.aaker@me.com</a>
+								</div>
+								
+								<div id="coachinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Sverre Haugen<br>
+									<b>Trener</b><br>
+									Mobil: 91824047<br>
+									<a href="mailto:sverrha4@online.no">sverrha4@online.no</a>
+								</div>
+								
+								<div id="coachinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Per Christian Berg<br>
+									<b>Trener</b><br>
+									Mobil: 90965250<br>
+									<a href="mailto:PerChristian.Berg@coor.com">PerChristian.Berg@coor.com</a>
+								</div>
+								
+								<div id="coachinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Porfirio  Gutierrez<br>
+									<b>Trener</b><br>
+									Mobil: 91198244<br>
+									<a href="mailto:porfgut@yahoo.no">porfgut@yahoo.no</a>
+								</div>
+								
+								<div id="coachinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Jan Rune Simonsen<br>
+									<b>Trener</b><br>
+									Mobil: 93095555<br>
+									<a href="mailto:jan.rune.simonsen@netcom.no">jan.rune.simonsen@netcom.no</a>
+								</div>
+								
+								<div id="coachinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Rune Hørnes<br>
+									<b>Trener</b><br>
+									Mobil: 92897125<br>
+									<a href="mailto:rune.hornes@storebrand.no">rune.hornes@storebrand.no</a>
+								</div>
+								
+							</div>
+							
+							
+							<h3><a href="#">Spillere</a></h3>
+							<div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Adrian Skeie I
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Aksel Amstel B
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Albert A
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Aleksander W
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Aleksander Grøtlien N
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Alex K
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Alvin I
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Alvin Øye S
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Amund Anjasønn T
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Andreas Ø
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Anton Fylling B
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									August N
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Benjamin Lohne S
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Cecilie O
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Clifford J
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Egill B
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Enzo d
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Even O
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Even T
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Fredrik Berg L
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Fredrik Sofus N
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Frikk Aakervik M
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Haakon D
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Habibullah M
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Henrik Ø
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Henrik Olai H
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Herman H
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Hermann Klæboe M
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Håkon H
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Håkon H
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Iver H
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Iver K
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Jakub S
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Jens C
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Jeremias Isak J
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Jesper R
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Kasper Breen A
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Knut Emil H
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Kristian T
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Kristian Bergland A
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Linus Bernt Sverre K
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Luca C
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Lucas  L
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Lucas Sharma  L
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Lukas Bergum B
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Manuel Valentin  G
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Martin Brown M
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Martinius J
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Mats L
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Max Aleksander Å
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Michael  M
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Mikkel H
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Mikkel S
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Mikkel Wennberg L
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Mikolaj N
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Mohamed H
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Nicolas D
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Nikan S
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Njål Leopold H
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Noah M
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Odd S
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Ola Owren M
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Ole Christian Klæboe B
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Osita K. B
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Peder Olsbø H
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Peter T
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Philip S
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Robin K
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Sebastian E
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Sebastian Sander F
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Sindre H
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Sondre Strande O
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Storm Andre H
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Styrk  M
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Sverre S
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Sverre Aasan F
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Tarjei V
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Teodor Nyenget H
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Theo M
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Theodor O
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Theodor W
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Theodor W
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Truls Eide S
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Trygve Klepsvik F
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Trygve Mysen K
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Trym M
+								</div>
+								
+									
+								<div id="playerinfo">
+									<div class="photo"><a href="#"><img src="/portal/images/no_picture.gif"  width="55" /></a></div>
+									Trym N
+								</div>
+								
+							</div>
+							
+							
+							<h3><a href="#">Ukens treninger</a></h3>
+							<div>
+							
+							</div>
+														
+							
+								
+							
+							
+							
+						</div>						
+						
+						
+						
+										
+							<div id="rg-gallery" class="rg-gallery" style="margin-top:10px;margin-bottom:10px">
+							<div class="rg-thumbs">
+								<!-- Elastislide Carousel Thumbnail Viewer -->
+								<div class="es-carousel-wrapper">
+									<div class="es-nav">
+										<span class="es-nav-prev">Previous</span>
+										<span class="es-nav-next">Next</span>
+									</div>
+									<div class="es-carousel">
+										<ul>
+											
+											
+											<li><a href="#"><img src="http://skeid.no/portal/upload/gallery_thumbs/thumb_3559_skeid_nytt_bilde.jpg" data-large="/kx/192/galleries/3559/skeid_nytt_bilde.jpg" alt="image1" data-description="" /></a></li>
+												
+											
+										</ul>
+									</div>
+								</div>
+								<!-- End Elastislide Carousel Thumbnail Viewer -->
+							</div><!-- rg-thumbs -->
+						</div><!-- rg-gallery -->
+				
+						<script type="text/javascript" src="/kx/_layout/theme/javascript/ResponsiveImageGallery/js/jquery.tmpl.min.js"></script>
+						<script type="text/javascript" src="/kx/_layout/theme/javascript/ResponsiveImageGallery/js/jquery.elastislide.js"></script>
+						<script type="text/javascript" src="/kx/_layout/theme/javascript/ResponsiveImageGallery/js/gallery.js"></script>
+						
+				</div>
+					
+	</div>
+	</div>
+	<div id="ad_right_sidebar">
+	
+	</div>
+</div>
+
+	<div class="clear"></div>
+	
+
+	<!-- Start Footer Sidebar -->
+	<div id="f_sidebar">
+		<div class="sb_wrapper">
+			
+				<div><h1>&nbsp;</h1>
+
+<p>&nbsp;</p>
+</div>
+			
+		</div>
+		<div class="clear"></div>
+	</div>
+	<!-- End Footer Sidebar -->
+	<!-- Start Footer  -->
+	<div id="footer">
+		
+			<div></div>
+		
+	</div>
+	<style>
+	#company_promo {text-align:center;background-color:#ffffff;color:#000000;font:verdana;font-size:14px;font-weight:normal;padding:5px;}
+	</style>
+	<div id="company_promo">©2015 Markedets beste IT-plattform for idretten <a href="http://www.123klubb.no">123klubb</a> leveres av KX Products as</div>
+	<!-- End Footer  -->
+	
+<!-- End Container -->
+</body>
+</html>
