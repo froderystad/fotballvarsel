@@ -1,10 +1,15 @@
-var collections = ["portals", "subscribers"];
-var db = require("mongojs").connect(process.env.MONGOLAB_URI, collections);
+//var collections = ["portals", "subscribers"];
+var mongoClient = require('mongodb').MongoClient;
+var url = process.env.MONGOLAB_URI;
 
 exports.findAllPortals = function(handleFoundPortals) {
-  db.portals.find(function(err, portals) {
-    if( err || !portals) console.log("No portals found");
-    else handleFoundPortals(portals);
+  mongoClient.connect(url, function(err, db) {
+    if (err) console.log("Error: " + err);
+    var collection = db.collection("portals");
+    collection.find({}).toArray(function(err, items) {
+      handleFoundPortals(items || []);
+    });
+    db.close();
   });
 };
 

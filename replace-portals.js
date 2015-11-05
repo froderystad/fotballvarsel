@@ -5,6 +5,6 @@ var repository = require('./js/repository.js');
 //});
 
 repository.findAllPortals(function(portals) {
-  console.log("Found " + portals.lenght + " portals");
+  console.log("Found " + portals.length + " portals");
 });
 
