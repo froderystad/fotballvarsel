@@ -17,7 +17,7 @@ exports.parseArticles = function(htmlStr) {
   });
 
   return articles;
-}
+};
 
 var findIdFromLink = function(link) {
   var idStr = link.substring(link.lastIndexOf('=') + 1);
@@ -26,4 +26,4 @@ var findIdFromLink = function(link) {
 
 var hash = function(articleStr) {
   return crypto.createHash('md5').update(articleStr).digest('hex');
-}
+};

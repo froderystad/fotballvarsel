@@ -22,7 +22,7 @@ var requestBody = function(url, bodyHandler) {
       console.log("Failed fetching " + url);
     }
   });
-}
+};
 
 var handleResponseBody = function(body) {
   var freshArticles = parser.parseArticles(body);
@@ -30,4 +30,4 @@ var handleResponseBody = function(body) {
 
   var knownArticles = [];
   var newOrChangedArticles = articleUtil.findNewOrChanged(freshArticles, knownArticles);
-}
+};
