@@ -2,17 +2,31 @@
 var mongoClient = require('mongodb').MongoClient;
 var url = process.env.MONGOLAB_URI;
 
-exports.findAllPortals = function(handleFoundPortals) {
-  mongoClient.connect(url, function(err, db) {
-    if (err) console.log("Error: " + err);
-    var collection = db.collection("portals");
-    collection.find({}).toArray(function(err, items) {
-      handleFoundPortals(items || []);
+exports.findAllTeams = function(successCallback) {
+  mongoClient.connect(url, function(error, db) {
+    if (error) console.log("Error: " + error);
+    var collection = db.collection("teams");
+    collection.find({}).toArray(function(error, items) {
+      db.close();
+      successCallback(items || []);
     });
-    db.close();
   });
 };
 
-exports.replacePortals = function(supportedPortals) {
-  //db.portals.deleteMany();
+exports.replaceTeams = function(teams, successCallback) {
+  mongoClient.connect(url, function(err, db) {
+    if (err) console.log("Error: " + err);
+    var collection = db.collection("teams");
+    collection.deleteMany({}, function(error, result) {
+      if (error) console.log("Error: " + error);
+      console.log("Deleted " + result.deletedCount + " team entries");
+
+      collection.insertMany(teams, function(error, result) {
+        if (error) console.log("Error: " + error);
+        console.log("Inserted " + result.insertedCount + " team configurations");
+        db.close();
+        successCallback(result.ops);
+      });
+    });
+  });
 };
