@@ -2,21 +2,18 @@
 var mongoClient = require('mongodb').MongoClient;
 var url = process.env.MONGOLAB_URI;
 
-exports.findAllTeams = function(successCallback) {
-  mongoClient.connect(url, function(error, db) {
-    if (error) console.log("Error: " + error);
-    var collection = db.collection("teams");
-    collection.find({}).toArray(function(error, items) {
-      db.close();
-      successCallback(items || []);
-    });
-  });
+exports.findAllTeams = function(callback) {
+  findAll("teams", callback);
 };
 
 exports.findAllArticles = function(callback) {
+  findAll("articles", callback);
+};
+
+var findAll = function(collectionName, callback) {
   mongoClient.connect(url, function(error, db) {
     if (error) console.log("connect error: %s", error);
-    var collection = db.collection("articles");
+    var collection = db.collection(collectionName);
     collection.find({}).toArray(function(error, items) {
       db.close();
       callback(error, items || []);

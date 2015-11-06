@@ -11,7 +11,7 @@ var articleUtil = require('./article-util.js');
 var repository = require('./repository.js');
 
 exports.execute = function() {
-  repository.findAllTeams(function(teams) {
+  repository.findAllTeams(function(error, teams) {
     teams.forEach(function(team, index, array) {
       requestBody(team, handleResponseBody);
     });

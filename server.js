@@ -12,7 +12,7 @@ router.get('/', function (req, res) {
 
 router.route('/teams')
     .get(function(req, res) {
-      repository.findAllTeams(function(teams) {
+      repository.findAllTeams(function(error, teams) {
         res.json(teams);
       });
     });
