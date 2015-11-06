@@ -13,6 +13,17 @@ exports.findAllTeams = function(successCallback) {
   });
 };
 
+exports.findAllArticles = function(callback) {
+  mongoClient.connect(url, function(error, db) {
+    if (error) console.log("connect error: %s", error);
+    var collection = db.collection("articles");
+    collection.find({}).toArray(function(error, items) {
+      db.close();
+      callback(error, items || []);
+    });
+  });
+};
+
 exports.findSubscriberByEmail = function(email, callback) {
   mongoClient.connect(url, function(error, db) {
     if (error) console.log("connect error: " + error);

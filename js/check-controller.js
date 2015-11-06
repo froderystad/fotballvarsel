@@ -8,26 +8,31 @@
 var request = require('request');
 var parser = require('./page-html-parser.js');
 var articleUtil = require('./article-util.js');
+var repository = require('./repository.js');
 
 exports.execute = function() {
-  var url = 'http://skeid.no/portal/theme/team/main.do?teamId=10489';
-  requestBody(url, handleResponseBody);
+  repository.findAllTeams(function(teams) {
+    teams.forEach(function(team, index, array) {
+      requestBody(team, handleResponseBody);
+    });
+  });
 };
 
-var requestBody = function(url, bodyHandler) {
-  request(url, function (error, response, body) {
+var requestBody = function(team, bodyHandler) {
+  request(team.url, function (error, response, body) {
     if (!error && response.statusCode == 200) {
-      bodyHandler(body);
+      bodyHandler(team, body);
     } else {
-      console.log("Failed fetching " + url);
+      console.log("Failed fetching " + team.url);
     }
   });
 };
 
-var handleResponseBody = function(body) {
+var handleResponseBody = function(team, body) {
   var freshArticles = parser.parseArticles(body);
-  console.log("Found " + freshArticles.length + " articles");
+  console.log("Read %d articles for %s", freshArticles.length, team.name);
 
-  var knownArticles = [];
-  var newOrChangedArticles = articleUtil.findNewOrChanged(freshArticles, knownArticles);
+  var knownArticles = repository.findAllArticles(function(error, articles) {
+    var newOrChangedArticles = articleUtil.findNewOrChanged(freshArticles, knownArticles);
+  });
 };
