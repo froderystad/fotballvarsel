@@ -17,7 +17,7 @@ repository.replaceTeams(supportedTeams, function(teams) {
 
 var subscribers = [
   {
-    'email': 'frode.rystad@rystad.no',
+    'email': 'frode.rystad@gmail.com',
     'teams': ['G2009', 'G2007']
   }
 ];

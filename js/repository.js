@@ -13,6 +13,18 @@ exports.findAllTeams = function(successCallback) {
   });
 };
 
+exports.findSubscriberByEmail = function(email, callback) {
+  mongoClient.connect(url, function(error, db) {
+    if (error) console.log("connect error: " + error);
+    var collection = db.collection('subscribers');
+    collection.findOne({ email: email }, function(error, subscriber) {
+      if (error) console.log("findOne error: " + error);
+      db.close();
+      callback(error, subscriber);
+    });
+  });
+};
+
 exports.replaceTeams = function(teams, successCallback) {
   deleteAndInsertMany("teams", teams, successCallback);
 };
@@ -34,4 +46,4 @@ var deleteAndInsertMany = function(collectionName, items, successCallback) {
       });
     });
   });
-}
+};
