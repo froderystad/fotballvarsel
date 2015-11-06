@@ -30,3 +30,18 @@ exports.replaceTeams = function(teams, successCallback) {
     });
   });
 };
+
+exports.replaceSubscribers = function(subscribers, successCallback) {
+  mongoClient.connect(url, function(error, db) {
+    if (error) console.log("connect error: " + error);
+    var collection = db.collection("subscribers");
+    collection.deleteMany({}, function(error, result) {
+      if (error) console.log("deleteMany error: " + error);
+      collection.insertMany(subscribers, function(error, result) {
+        if (error) console.log("insertMany error: " + error);
+        db.close();
+        successCallback(result.ops);
+      });
+    });
+  });
+};

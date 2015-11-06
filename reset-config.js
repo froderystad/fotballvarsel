@@ -14,3 +14,14 @@ var supportedTeams = [
 repository.replaceTeams(supportedTeams, function(teams) {
   console.log("Re-wrote configuration for " + teams.length + " teams");
 });
+
+var subscribers = [
+  {
+    'email': 'frode.rystad@rystad.no',
+    'teams': ['G2009', 'G2007']
+  }
+];
+
+repository.replaceSubscribers(subscribers, function(subscribers) {
+  console.log("Re-wrote " + subscribers.length + " subscribers");
+});
