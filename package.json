@@ -2,11 +2,12 @@
   "name": "fotballvarsel",
   "version": "0.1.0",
   "description": "Varsler abonnenter per e-post om endringer på Skeid.no",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node server.js"
   },
   "dependencies": {
+    "body-parser": "^1.14.1",
     "cheerio": "^0.19.0",
     "express": "^4.13.3",
     "mongodb": "^2.0.47",
