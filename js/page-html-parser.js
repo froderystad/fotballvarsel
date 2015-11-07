@@ -1,5 +1,4 @@
 var cheerio = require('cheerio');
-var crypto = require('crypto');
 var Article = require('./model/article.js');
 
 exports.parseArticles = function(htmlStr) {
@@ -11,9 +10,8 @@ exports.parseArticles = function(htmlStr) {
     var title = $(this).find('h2').text();
     var link = $(this).find('a').attr('href');
     var id = findIdFromLink(link);
-    var hash = computeHash($(this).text());
 
-    var article = new Article(id, title, link, hash);
+    var article = new Article(id, title, link);
     articles.push(article);
   });
 
@@ -23,8 +21,4 @@ exports.parseArticles = function(htmlStr) {
 var findIdFromLink = function(link) {
   var idStr = link.substring(link.lastIndexOf('=') + 1);
   return parseInt(idStr);
-};
-
-var computeHash = function(articleStr) {
-  return crypto.createHash('md5').update(articleStr).digest('hex');
 };

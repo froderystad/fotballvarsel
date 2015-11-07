@@ -22,6 +22,11 @@ var findAll = function(collectionName, callback) {
 };
 
 exports.insertArticles = function(articles, callback) {
+  if (articles.length === 0) {
+    callback(undefined, articles);
+    return;
+  }
+  
   mongoClient.connect(url, function(error, db) {
     if (error) console.log("connect error: " + error);
     var collection = db.collection('articles');
