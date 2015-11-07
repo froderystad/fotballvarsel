@@ -1,14 +1,9 @@
-// for each monitored page
-//   get articles from web page
-//   get last known articles from data store
-//   identify new/changed articles
-//   get subscribers to page
-//   notify subscribers to page
-
 var request = require('request');
 var parser = require('./page-html-parser.js');
 var articleUtil = require('./article-util.js');
 var repository = require('./repository.js');
+var mailSender = require('./mail-sender.js');
+var iconvLite = require('iconv-lite');
 
 exports.execute = function() {
   repository.findAllTeams(function(error, teams) {
@@ -18,14 +13,19 @@ exports.execute = function() {
   });
 };
 
-var requestBody = function(team, bodyHandler) {
-  request(team.url, function (error, response, body) {
+var requestBody = function(team, handleResponseBody) {
+  request({ uri: team.url, encoding: 'binary'}, function (error, response, binaryBody) {
     if (!error && response.statusCode == 200) {
-      bodyHandler(team, body);
+      handleResponseBody(team, decodeBody(binaryBody));
     } else {
       console.log("Failed fetching " + team.url);
     }
   });
+};
+
+var decodeBody = function(binaryBody) {
+  var bodyBuffer = new Buffer(binaryBody, 'binary');
+  return iconvLite.decode(bodyBuffer, 'iso-8859-1');
 };
 
 var handleResponseBody = function(team, body) {
@@ -57,6 +57,7 @@ var alertSubscribers = function(team, newArticles, informDone) {
     console.log("Alerting %d subscribers for %s", subscribers.length, team.name);
     subscribers.forEach(function(subscriber) {
       console.log("Sending e-mail to %s about %d new articles for %s", subscriber.email, newArticles.length, team.name);
+      mailSender.sendEmail(subscriber, team, newArticles);
     });
     informDone(team);
   });
