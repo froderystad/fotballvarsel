@@ -21,6 +21,18 @@ var findAll = function(collectionName, callback) {
   });
 };
 
+exports.insertArticles = function(articles, callback) {
+  mongoClient.connect(url, function(error, db) {
+    if (error) console.log("connect error: " + error);
+    var collection = db.collection('articles');
+    collection.insertMany(articles, function(error, result) {
+      if (error) console.log("insertMany error: " + error);
+      db.close();
+      callback(error, result.ops);
+    });
+  });
+};
+
 exports.findSubscriberByEmail = function(email, callback) {
   mongoClient.connect(url, function(error, db) {
     if (error) console.log("connect error: " + error);
@@ -29,6 +41,18 @@ exports.findSubscriberByEmail = function(email, callback) {
       if (error) console.log("findOne error: " + error);
       db.close();
       callback(error, subscriber);
+    });
+  });
+};
+
+exports.findSubscribersForTeam = function(team, callback) {
+  mongoClient.connect(url, function(error, db) {
+    if (error) console.log("connect error: " + error);
+    var collection = db.collection('subscribers');
+    collection.find({ teams: { $in: [team.name] } }).toArray(function(error, subscribers) {
+      if (error) console.log("find error: " + error);
+      db.close();
+      callback(error, subscribers);
     });
   });
 };

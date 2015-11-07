@@ -13,3 +13,10 @@ Applikasjonen sjekker for endringer hver time, og sender deg e-post hvis en over
 Tjenesten er utviklet av [Frode Rystad](mailto:frode.rystad@gmail.com) på privat initiativ. Tjenesten er på ingen måte assosiert med Rystads arbeidsgiver, Skeid eller KX Products as. Spørsmål om applikasjonen rettes til Rystad direkte.
 
 Tjenesten tilbys gratis og uten garantier. Frode Rystad er uten erstatningsansvar hvis feil i tjenesten skulle medføre problemer for abonnenten.
+
+## Teknisk informasjon ##
+
+Dette er informasjon om utvikling og drift. Brukere trenger ikke lese dette.
+
+Tjenesten bruker MongoDB som database. Det må legges på en unik indeks på artiklenes id-felt (forskjellig fra `_id`).
+`db.articles.createIndex( { id: 1 }, { unique: true } )`

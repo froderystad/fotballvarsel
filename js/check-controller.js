@@ -32,7 +32,31 @@ var handleResponseBody = function(team, body) {
   var freshArticles = parser.parseArticles(body);
   console.log("Read %d articles for %s", freshArticles.length, team.name);
 
-  var knownArticles = repository.findAllArticles(function(error, articles) {
-    var newOrChangedArticles = articleUtil.findNewOrChanged(freshArticles, knownArticles);
+  var knownArticles = repository.findAllArticles(function(error, knownArticles) {
+    var newArticles = articleUtil.findNew(freshArticles, knownArticles);
+    saveNewArticles(team, newArticles, alertSubscribers);
   });
 };
+
+var saveNewArticles = function(team, newArticles, alertSubscribers) {
+  repository.insertArticles(newArticles, function(error, insertedArticles) {
+    console.log("Inserted %d articles for %s", insertedArticles.length, team.name);
+    alertSubscribers(team, newArticles, informDone);
+  });
+};
+
+var alertSubscribers = function(team, newArticles, informDone) {
+  repository.findSubscribersForTeam(team, function(error, subscribers) {
+    if (error) console.log("Error finding subscribers for team %s", team.name);
+    console.log("Alerting %d subscribers for %s", subscribers.length, team.name);
+    subscribers.forEach(function(subscriber) {
+      console.log("Sending e-mail to %s about %d new articles for %s", subscriber.email, newArticles.length, team.name);
+    });
+    informDone(team);
+  });
+};
+
+var informDone = function(team) {
+  console.log("Done checking %s", team.name);
+};
+

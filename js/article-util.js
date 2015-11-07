@@ -1,5 +1,5 @@
 
 
-exports.findNewOrChanged = function(freshArticles, knownArticles) {
-
+exports.findNew = function(freshArticles, knownArticles) {
+  return freshArticles;
 };
