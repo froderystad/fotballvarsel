@@ -20,17 +20,17 @@ router.route('/teams')
 router.route('/subscribers/:email')
     .get(function(req, res) {
       console.log("Getting subscriber " + req.params.email);
-      repository.findSubscriberByEmail(req.params.email, function(err, subscriber) {;
-        if (err) {;
+      repository.findSubscriberByEmail(req.params.email, function(err, subscriber) {
+        if (err) {
           console.log("Error in repo: " + err);
           res.send(err);
         }
         console.log("Found " + subscriber);
         res.json(subscriber);
-      })
+      });
     });
 
-app.use('/api', router)
+app.use('/api', router);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 

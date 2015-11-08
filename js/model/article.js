@@ -1,6 +1,6 @@
 var crypto = require('crypto');
 
-function Article(id, title, link, hash) {
+function Article(id, title, link) {
   this.id = id;
   this.title = title;
   this.link = link;

@@ -6,7 +6,7 @@ exports.parseArticles = function(htmlStr) {
 
   var articles = [];
 
-  var articleDivs = $('div .featured').each(function() {
+  $('div .featured').each(function() {
     var title = $(this).find('h2').text();
     var link = $(this).find('a').attr('href');
     var id = findIdFromLink(link);

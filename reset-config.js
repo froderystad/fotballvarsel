@@ -8,7 +8,7 @@ var supportedTeams = [
   {
     'name': 'G2009',
     'url': 'http://skeid.no/portal/theme/team/main.do?teamId=16047',
-  },
+  }
 ];
 
 repository.replaceTeams(supportedTeams, function(teams) {

@@ -1,4 +1,6 @@
 node_modules
 .env
 *.sublime-workspace
+*.iml
+.idea
 results.txt

@@ -32,7 +32,7 @@ var handleResponseBody = function(team, body) {
   var freshArticles = parser.parseArticles(body);
   console.log("Read %d articles for %s from web", freshArticles.length, team.name);
 
-  var knownArticles = repository.findAllArticles(function(error, knownArticles) {
+  repository.findAllArticles(function(error, knownArticles) {
     var newArticles = articleUtil.findNew(freshArticles, knownArticles);
     saveNewArticles(team, newArticles, alertSubscribers);
   });

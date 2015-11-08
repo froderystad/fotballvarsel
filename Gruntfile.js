@@ -17,7 +17,8 @@ module.exports = function(grunt) {
     },
 
     jshint: {
-      all: ['Gruntfile.js', 'js/**/*.js', 'test/**/*.js']
+      all: ['Gruntfile.js', 'check-and-alert.js', 'reset-config.js', 'server.js', 'test-email.js',
+        'js/**/*.js', 'test/**/*.js']
     },
 
     watch: {

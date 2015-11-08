@@ -1,4 +1,3 @@
-//var collections = ["portals", "subscribers"];
 var mongoClient = require('mongodb').MongoClient;
 var url = process.env.MONGOLAB_URI;
 
