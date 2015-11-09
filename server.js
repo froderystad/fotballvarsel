@@ -31,12 +31,10 @@ router.route('/subscribers/:email')
     });
 
 app.use('/api', router);
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use('/api', bodyParser.urlencoded({ extended: true }));
+app.use('/api', bodyParser.json());
 
-app.get('/', function (req, res) {
-  res.send('Velkommen til Fotballvarsel for Skeid.no');
-});
+app.use(express.static(__dirname + '/app'));
 
 app.listen(port);
 console.log('Fotballvarsel listening on port %s', port);
