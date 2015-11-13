@@ -38,12 +38,12 @@ angular.module('app', ['ngRoute', 'ngResource'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: '/login.html',
+                templateUrl: 'partials/login.html',
                 controller: 'LoginCtrl'
             })
 
             .when('/subscriber', {
-                templateUrl: '/subscriber.html',
+                templateUrl: 'partials/subscriber.html',
                 controller: 'SubscriberCtrl'
             });
     }]);
