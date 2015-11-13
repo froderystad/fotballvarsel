@@ -1,9 +1,5 @@
 var services = angular.module('services', ['ngResource']);
 
-services.factory('Email', function() {
-    return { email: null };
-});
-
 services.factory('Subscriber', function() {
     return { theSubscriber: null };
 });
