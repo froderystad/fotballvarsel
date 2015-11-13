@@ -1,49 +1,33 @@
-angular.module('app', ['ngRoute', 'ngResource'])
+var app = angular.module('app', ['ngRoute', 'ngResource', 'controllers']);
 
-    .factory('Email', function() {
-        return { email: null };
-    })
+app.factory('Email', function() {
+    return { email: null };
+});
 
-    .factory('Subscriber', function(){
-        return {
-                "_id": "563f8556622a4f0c64b28cbb",
-                "email": "frode.rystad@gmail.com",
-                "teams": [
-                    "G2009",
-                    "G2007"
-                ]
-            };
-    })
-
-    .factory('Teams', ['$resource', function($resource){
-        return $resource('/api/teams', null);
-    }])
-
-    .controller('LoginCtrl', ['$scope', '$location', 'Email', 'Subscriber', function ($scope, $location, Email, Subscriber) {
-        $scope.email = Email;
-
-        $scope.login = function() {
-            console.log("%s logged in", $scope.email.email);
-            console.log("Subscriber is %s", Subscriber.email);
-            $location.path('/subscriber');
+app.factory('Subscriber', function(){
+    return {
+            "_id": "563f8556622a4f0c64b28cbb",
+            "email": "frode.rystad@gmail.com",
+            "teams": [
+                "G2009",
+                "G2007"
+            ]
         };
-    }])
+});
 
-    .controller('SubscriberCtrl', ['$scope', 'Subscriber', 'Teams', function ($scope, Subscriber, Teams) {
-        $scope.subscriber = Subscriber;
-        $scope.teams = Teams.query();
-        console.log("Subscriber is %s", Subscriber.email);
-    }])
+app.factory('Teams', ['$resource', function($resource){
+    return $resource('/api/teams', null);
+}]);
 
-    .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider
-            .when('/', {
-                templateUrl: 'partials/login.html',
-                controller: 'LoginCtrl'
-            })
+app.config(['$routeProvider', function ($routeProvider) {
+    $routeProvider
+        .when('/', {
+            templateUrl: 'partials/login.html',
+            controller: 'LoginCtrl'
+        })
 
-            .when('/subscriber', {
-                templateUrl: 'partials/subscriber.html',
-                controller: 'SubscriberCtrl'
-            });
-    }]);
+        .when('/subscriber', {
+            templateUrl: 'partials/subscriber.html',
+            controller: 'SubscriberCtrl'
+        });
+}]);
