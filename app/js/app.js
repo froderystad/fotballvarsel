@@ -2,7 +2,7 @@ var app = angular.module('app', ['ngRoute', 'ngResource', 'controllers', 'servic
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-        .when('/', {
+        .when('/login', {
             templateUrl: 'partials/login.html',
             controller: 'LoginCtrl'
         })
@@ -10,5 +10,9 @@ app.config(['$routeProvider', function ($routeProvider) {
         .when('/subscriber', {
             templateUrl: 'partials/subscriber.html',
             controller: 'SubscriberCtrl'
+        })
+
+        .otherwise({
+            redirectTo: '/login'
         });
 }]);
