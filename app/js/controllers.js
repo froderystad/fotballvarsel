@@ -7,7 +7,13 @@ controllers.controller('LoginCtrl', ['$scope', '$location', 'Email', 'Subscriber
     $scope.login = function() {
         var email = $scope.email.email;
         $scope.error = null;
-        console.log("%s logged in", email);
+
+        if (!email) {
+            $scope.error = "Ikke en e-postadresse";
+            $location.path('/login');
+            return;
+        }
+
         Subscribers.get({email: email}, function(subscriber) {
             if (subscriber.email) {
                 console.log("%s logged in as %s", email, JSON.stringify(subscriber));
@@ -18,6 +24,10 @@ controllers.controller('LoginCtrl', ['$scope', '$location', 'Email', 'Subscriber
                 $scope.error = "Ukjent e-postadresse";
                 $location.path('/login');
             }
+        }, function(response) {
+            console.log("Request failed: %s", JSON.stringify(response));
+            $scope.error = "En uventet feil skjedde";
+            $location.path('/login');
         });
     };
 }]);
