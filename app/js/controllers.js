@@ -37,6 +37,12 @@ controllers.controller('SubscriberCtrl', ['$scope', 'Subscriber', 'Teams', funct
 
     $scope.teams = Teams.query();
     console.log("Subscriber is %s", $scope.subscriber.email);
+
+    $scope.subscribes = function(team) {
+        return $scope.teams.some(function(aTeam)  {
+            return aTeam.name == team.name;
+        });
+    }
 }]);
 
 

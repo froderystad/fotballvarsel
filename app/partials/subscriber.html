@@ -1,7 +1,7 @@
 E-mail: {{subscriber.email}}
 <ul>
     <li ng-repeat="team in teams">
-        {{team.name}}
+        <input type="checkbox" ng-checked="subscribes(team)">{{team.name}}
     </li>
 </ul>
 <a href="#/">Back...</a>
