@@ -1,12 +1,13 @@
 var controllers = angular.module('controllers', ['services']);
 
-controllers.controller('LoginCtrl', ['$scope', '$location', 'Subscribers', 'Subscriber', function ($scope, $location, Subscribers, Subscriber) {
-    $scope.email = null;
+controllers.controller('LoginCtrl', ['$scope', '$location', 'Email', 'Subscribers', 'Subscriber', function ($scope, $location, Email, Subscribers, Subscriber) {
+    $scope.email = Email;
     $scope.error = null;
 
     $scope.login = function() {
-        var email = $scope.email;
+        var email = $scope.email.email;
         $scope.error = null;
+        console.log("%s logged in", email);
         Subscribers.get({email: email}, function(subscriber) {
             if (subscriber.email) {
                 console.log("%s logged in as %s", email, JSON.stringify(subscriber));
