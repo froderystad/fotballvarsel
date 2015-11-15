@@ -49,6 +49,18 @@ exports.findSubscriberByEmail = function(email, callback) {
   });
 };
 
+exports.insertOrUpdateSubscriber = function(email, subscriber, callback) {
+  mongoClient.connect(url, function(error, db) {
+    if (error) console.log("connect error: " + error);
+    var collection = db.collection('subscribers');
+    collection.updateOne({email: email}, subscriber, {upsert: true}, function(error, subscriber) {
+      if (error) console.log("updateOne error: " + error);
+      db.close();
+      callback(error, subscriber);
+    })
+  });
+};
+
 exports.findSubscribersForTeam = function(team, callback) {
   mongoClient.connect(url, function(error, db) {
     if (error) console.log("connect error: " + error);

@@ -11,7 +11,10 @@ services.factory('Subscriber', function() {
 });
 
 services.factory('Subscribers', ['$resource', function($resource){
-    return $resource('/api/subscribers/:email');
+    return $resource('/api/subscribers/:email', null,
+        {
+            'update': { method:'PUT' }
+        });
 }]);
 
 services.factory('Teams', ['$resource', function($resource){

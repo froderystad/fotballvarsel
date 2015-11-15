@@ -32,17 +32,55 @@ controllers.controller('LoginCtrl', ['$scope', '$location', 'Email', 'Subscriber
     };
 }]);
 
-controllers.controller('SubscriberCtrl', ['$scope', 'Subscriber', 'Teams', function ($scope, Subscriber, Teams) {
+controllers.controller('SubscriberCtrl', ['$scope', 'Subscriber', 'Subscribers', 'Teams', function ($scope, Subscriber, Subscribers, Teams) {
     $scope.subscriber = Subscriber.theSubscriber;
 
     $scope.teams = Teams.query();
     console.log("Subscriber is %s", $scope.subscriber.email);
 
     $scope.subscribes = function(team) {
-        return $scope.teams.some(function(aTeam)  {
-            return aTeam.name == team.name;
-        });
-    }
+        var subscribedTeams = $scope.subscriber.teams;
+        if (subscribedTeams) {
+            return subscribedTeams.some(function (aTeamName) {
+                return aTeamName == team.name;
+            });
+        } else {
+            return false;
+        }
+    };
+
+    var subscribe = function(team) {
+        $scope.subscriber.teams.push(team.name);
+        Subscribers.update({email: $scope.subscriber.email}, $scope.subscriber);
+        console.log("Subscribed to %s", team.name);
+    };
+
+    var unsubscribe = function(team) {
+        var teamNames = $scope.subscriber.teams;
+        var i = function(team) {
+            for (i = 0; i < teamNames.length; i++) {
+                if (teamNames[i] == team.name) {
+                    console.log("Found %s in index %d", team.name, i);
+                    return i;
+                }
+            }
+            return -1;
+        }(team);
+        if (i > -1) {
+            $scope.subscriber.teams.splice(i, 1);
+            Subscribers.update({email: $scope.subscriber.email}, $scope.subscriber);
+            console.log("Unsubscribed to %s", team.name);
+        }
+    };
+
+    $scope.subscriptionChanged = function(team) {
+        console.log("Subscription changed");
+        if ($scope.subscribes(team)) {
+            unsubscribe(team);
+        } else {
+            subscribe(team);
+        }
+    };
 }]);
 
 
