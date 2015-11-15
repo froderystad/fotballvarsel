@@ -6,7 +6,7 @@ Dette er en applikasjon for å varsle når det legges ut nyheter på [Skeid sine
 
 Brukere som er interessert i å registrere eller endre et varsel kan gå til https://fotballvarsel.herokuapp.com. Ved å oppgi sin e-postadresse får brukeren tilsendt en link til en side hvor du kan velge hvilke oversiktssider du ønsker å abonnere på. Der kan nye varsel opprettes, og varsel kan slettes.
 
-Applikasjonen sjekker for endringer hver time, og sender deg e-post hvis en oversiktsside du abonnerer på får en ny eller endret artikkel.
+Applikasjonen sjekker for endringer hver time, og sender deg e-post hvis en oversiktsside du abonnerer på får en ny artikkel.
 
 ## Ansvarsfraskrivelse ##
 
