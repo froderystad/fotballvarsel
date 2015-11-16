@@ -1,8 +1,15 @@
 <p>
-    Dette er en applikasjon for å varsle når det legges ut nyheter på <a href="http://skeid.no">Skeid sine nettsider</a>.
-    Behovet skyldes at publiseringsløsningen <a href="http://www.123klubb.no/">123klubb</a> fra KX Products as
+    Dette er en applikasjon for å varsle når det legges ut nyheter på
+    <a href="http://skeid.no" rel="external" target="_blank">Skeid sine nettsider <span class="fa fa-external-link"></span></a>.
+    Behovet skyldes at publiseringsløsningen 123klubb fra KX Products
     ikke har støtte for varsling ved oppdateringer.
 </p>
+<p>Du kan abonnere på varsler for følgende Skeid-lag:</p>
+<ul>
+    <li ng-repeat="team in teams">
+        <a href="{{team.url}}" rel="external" target="_blank">{{team.name}} <span class="fa fa-external-link"></span></a>
+    </li>
+</ul>
 
 <h2>Bruksanvisning</h2>
 <ul>
@@ -24,11 +31,12 @@
 
 <h2>Ansvarsfraskrivelse</h2>
 <p>
-    Tjenesten er utviklet av <a href="mailto:fotballvarsel@rystad.no">Frode Rystad</a> på privat initiativ.
+    Tjenesten er utviklet av Frode Rystad på privat initiativ.
     Tjenesten er på ingen måte assosiert med Rystads arbeidsgiver, Skeid eller KX Products as.
-    Spørsmål om tjenesten rettes til Rystad direkte.
+    Spørsmål om tjenesten rettes til
+    <a href="mailto:fotballvarsel@rystad.no">Frode Rystad <span class="fa fa-envelope"></span></a> direkte.
 </p>
 <p>
     Tjenesten tilbys gratis og uten garantier.
-    Frode Rystad er uten erstatningsansvar hvis feil i tjenesten skulle medføre problemer for abonnenten.
+    Utvikleren er uten erstatningsansvar hvis feil i tjenesten skulle medføre problemer for abonnenten.
 </p>

@@ -3,7 +3,8 @@ var app = angular.module('app', ['ngRoute', 'ngResource', 'controllers', 'servic
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
         .when('/welcome', {
-            templateUrl: 'partials/welcome.html'
+            templateUrl: 'partials/welcome.html',
+            controller: 'WelcomeCtrl'
         })
 
         .when('/login', {
