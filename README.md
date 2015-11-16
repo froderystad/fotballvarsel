@@ -18,5 +18,24 @@ Tjenesten tilbys gratis og uten garantier. Frode Rystad er uten erstatningsansva
 
 Dette er informasjon om utvikling og drift. Brukere trenger ikke lese dette.
 
-Tjenesten bruker MongoDB som database. Det må legges på en unik indeks på artiklenes id-felt (forskjellig fra `_id`).
-`db.articles.createIndex( { id: 1 }, { unique: true } )`
+### Utvikleroppsett
+
+Du trenger NPM, Node og MongoDB installert. Løsningen er lagd for å kjøre i Heroku, og du trenger derfor en `.env`-fil med følgende properties:
+
+```
+PORT=  
+POSTMARK_API_KEY=  
+MONGOLAB_URI=  
+```
+
+Etter å ha klonet Git-repoet, kommer du i gang med følgende kommandoer:
+
+```
+npm install  
+env $(cat .env | xargs) node server.js  
+```
+
+### Databaseindex
+
+Tjenesten bruker MongoDB som database. Det må legges på en unik indeks på artiklenes id-felt:
+```db.articles.createIndex( { id: 1 }, { unique: true } )```
