@@ -12,6 +12,7 @@
     "express": "^4.13.3",
     "iconv-lite": "^0.4.13",
     "mongodb": "^2.0.47",
+    "node-uuid": "^1.4.7",
     "postmark": "^1.2.1",
     "request": "^2.65.0"
   },

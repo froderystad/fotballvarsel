@@ -2,11 +2,11 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var repository = require('./js/repository.js');
+var secretGenerator = require('./js/secret-generator.js');
 
 var port = process.env.PORT || 5000;
 var router = express.Router();
 var jsonParser = bodyParser.json();
-//var multipartParser = bodyParser.urlencoded({ extended: true });
 
 router.get('/', function (req, res) {
   res.json({message: 'Velkommen til Fotballvarsel for Skeid.no' });
@@ -17,6 +17,47 @@ router.route('/teams')
       repository.findAllTeams(function(error, teams) {
         res.json(teams);
       });
+    });
+
+router.route('/newsecret')
+    .post(jsonParser, function(req, res) {
+        console.log("Body: %s", JSON.stringify(req.body));
+        var email = req.body.email;
+        var secret = secretGenerator.newSecret();
+        console.log("Generated new secret for %s", email);
+        
+        repository.findSubscriberByEmail(email, function(error, subscriber) {
+            if (subscriber) {
+                console.log("Updating existing subscriber");
+                subscriber.secret = secret;
+                repository.insertOrUpdateSubscriber(email, subscriber, function(error, subscriber) {
+                    // TODO: send email
+                    res.json({
+                        email: email,
+                        status: "insert ok"
+                    });
+                });
+            } else {
+                console.log("Registering new subscriber");
+                subscriber = {
+                    email: email,
+                    secret: secret,
+                    teams: []
+                };
+                repository.insertOrUpdateSubscriber(email, subscriber, function(error, subscriber) {
+                    // TODO: send email
+                    res.json({
+                        email: email,
+                        status: "insert ok"
+                    });
+                });
+                // TODO: send email
+                res.json({
+                    email: email,
+                    status: "update TODO"
+                })
+            }
+        });
     });
 
 router.route('/subscribers/:email')

@@ -1,3 +1,7 @@
-E-postadresse: <input type="email" ng-model="email.email">
-<button ng-click="login()">Logg inn</button>
+<p>Logg inn med din e-postadresse og hemmelige nøkkel:</p>
+
+<div class="form-signin">
+    <input type="email" class="form-control" placeholder="E-postadresse" required autofocus ng-model="email.email">
+    <button class="btn btn-lg btn-primary btn-block" ng-click="login()">Logg inn</button>
+</div>
 <div class="alert alert-danger" role="alert" ng-if="error != null"><span class="error">{{error}}</span></div>

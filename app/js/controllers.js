@@ -1,5 +1,18 @@
 var controllers = angular.module('controllers', ['services', 'ngRoute']);
 
+controllers.controller('RegisterCtrl', ['$scope', '$location', '$http', function($scope, $location, $http) {
+    $scope.register = function(email) {
+        console.log("Resetting secret for %s", email);
+
+        $http.post('/api/newsecret', {email: email}, {headers: {'Content-Type': "application/json"}
+        }).then(function(response) {
+            console.log("Request succeeded: %s", JSON.stringify(response));
+        }, function(response) {
+            console.log("Request failed: %s", JSON.stringify(response));
+        });
+    };
+}]);
+
 controllers.controller('LoginCtrl', ['$scope', '$location', 'Email', 'Subscribers', 'Subscriber', function ($scope, $location, Email, Subscribers, Subscriber) {
     $scope.email = Email;
     $scope.error = null;

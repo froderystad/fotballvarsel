@@ -35,6 +35,9 @@ npm install
 env $(cat .env | xargs) node server.js  
 ```
 
+Hvis du utvikler på Windows, noe jeg absolutt ikke kan anbefale, så kan det hende Node ikke stenger ned
+som det skal. Avslutt da prosessen med `taskkill /F /IM node.exe`
+
 ### Databaseindex
 
 Tjenesten bruker MongoDB som database. Det må legges på en unik indeks på artiklenes id-felt:
