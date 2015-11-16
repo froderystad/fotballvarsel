@@ -11,6 +11,11 @@ app.config(['$routeProvider', function ($routeProvider) {
             controller: 'LoginCtrl'
         })
 
+        .when('/loginByLink/:email', {
+            templateUrl: 'partials/loginByLink.html',
+            controller: 'LoginByLinkCtrl'
+        })
+
         .when('/subscriber', {
             templateUrl: 'partials/subscriber.html',
             controller: 'SubscriberCtrl'

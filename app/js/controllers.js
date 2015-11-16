@@ -1,4 +1,4 @@
-var controllers = angular.module('controllers', ['services']);
+var controllers = angular.module('controllers', ['services', 'ngRoute']);
 
 controllers.controller('LoginCtrl', ['$scope', '$location', 'Email', 'Subscribers', 'Subscriber', function ($scope, $location, Email, Subscribers, Subscriber) {
     $scope.email = Email;
@@ -32,8 +32,34 @@ controllers.controller('LoginCtrl', ['$scope', '$location', 'Email', 'Subscriber
     };
 }]);
 
-controllers.controller('SubscriberCtrl', ['$scope', 'Subscriber', 'Subscribers', 'Teams', function ($scope, Subscriber, Subscribers, Teams) {
+controllers.controller('LoginByLinkCtrl', ['$scope', '$location', '$routeParams', 'Subscribers', 'Subscriber', function ($scope, $location, $routeParams, Subscribers, Subscriber) {
+    console.log("Trying to log in %s with secret in link", $routeParams.email);
+    var email = $routeParams.email;
+    var secret = $routeParams.secret;
+
+    Subscribers.get({email: email}, function(subscriber) {
+        if (subscriber.email) {
+            console.log("%s logged in as %s", email, JSON.stringify(subscriber));
+            Subscriber.theSubscriber = subscriber;
+            $location.path('/subscriber');
+            $location.search({});
+        } else {
+            console.log("%s is unknown", email);
+            $scope.error = "Ukjent e-postadresse";
+        }
+    }, function(response) {
+        console.log("Request failed: %s", JSON.stringify(response));
+        $scope.error = "En uventet feil skjedde";
+    });
+}]);
+
+controllers.controller('SubscriberCtrl', ['$scope', '$location', 'Subscriber', 'Subscribers', 'Teams', function ($scope, $location, Subscriber, Subscribers, Teams) {
     $scope.subscriber = Subscriber.theSubscriber;
+
+    if (!$scope.subscriber.email) {
+        $location.path('/login');
+        return;
+    }
 
     $scope.teams = Teams.query();
     console.log("Subscriber is %s", $scope.subscriber.email);
