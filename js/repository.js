@@ -50,6 +50,7 @@ exports.findSubscriberByEmail = function(email, callback) {
 };
 
 exports.insertOrUpdateSubscriber = function(email, subscriber, callback) {
+  delete subscriber._id;
   mongoClient.connect(url, function(error, db) {
     if (error) return callback(error, undefined);
     var collection = db.collection('subscribers');
