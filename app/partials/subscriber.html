@@ -4,3 +4,5 @@ E-mail: {{subscriber.email}}
         <input type="checkbox" ng-checked="subscribes(team)" ng-click="subscriptionChanged(team)">{{team.name}}
     </li>
 </ul>
+<div class="alert alert-success" role="alert" ng-if="success != null">{{success}}</div>
+<div class="alert alert-danger" role="alert" ng-if="error != null">{{error}}</div>

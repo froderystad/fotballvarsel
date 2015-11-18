@@ -120,11 +120,16 @@ controllers.controller('SubscriberCtrl', ['$scope', '$location', 'Subscriber', '
     };
 
     $scope.subscriptionChanged = function(team) {
+        $scope.success = null;
+        $scope.error = null;
+
         console.log("Subscription changed");
         if ($scope.subscribes(team)) {
             unsubscribe(team);
+            $scope.success = "Du abonnerer ikke lenger på " + team.name;
         } else {
             subscribe(team);
+            $scope.success = "Du abonnerer nå på " + team.name;
         }
     };
 }]);
