@@ -22,6 +22,6 @@ var subscribers = [
   }
 ];
 
-repository.replaceSubscribers(subscribers, function(error, subscribers) {
-  console.log("Re-wrote " + subscribers.length + " subscribers");
+repository.deleteSubscribers(function(error, numDeleted) {
+  console.log("Deleted " + numDeleted + " subscribers");
 });

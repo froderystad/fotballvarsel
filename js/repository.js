@@ -78,8 +78,16 @@ exports.replaceTeams = function(teams, callback) {
   deleteAndInsertMany("teams", teams, callback);
 };
 
-exports.replaceSubscribers = function(subscribers, callback) {
-  deleteAndInsertMany("subscribers", subscribers, callback);
+exports.deleteSubscribers = function(callback) {
+  mongoClient.connect(url, function(error, db) {
+    if (error) return callback(error, undefined);
+    var collection = db.collection("subscribers");
+    collection.deleteMany({}, function (error, result) {
+      if (error) console.log("deleteMany error: " + error);
+      db.close();
+      return callback(error, result.deletedCount);
+    });
+  });
 };
 
 var deleteAndInsertMany = function(collectionName, items, callback) {
