@@ -1,5 +1,8 @@
 var postmark = require("postmark");
 
+var protocol = process.env.TEST_PROTOCOL || "https";
+var hostnameWithPort = process.env.TEST_HOSTNAME_WITH_PORT || "fotballvarsel.herokuapp.com";
+
 var client = new postmark.Client(process.env.POSTMARK_API_KEY);
 var fromAddress = "fotballvarsel@rystad.no";
 var footer = "Takk for at du bruker Fotballvarsel-tjenesten! Feil og forbedringsønsker kan meldes til fotballvarsel@rystad.no.";
@@ -29,7 +32,7 @@ exports.newSecret = function(subscriber, callback) {
         "To": subscriber.email,
         "Subject": "Din innloggingslink til Fotballvarsel",
         "TextBody": "Din innloggingslink til Fotballvarsel:\n"
-            + "https://fotballvarsel.heroku.com/#/loginByLink/"+ subscriber.email + "?secret=" + subscriber.secret
+            + protocol + "://" + hostnameWithPort + "/#/loginByLink/"+ subscriber.email + "?secret=" + subscriber.secret
             + "\n\n" + footer
     }, callback);
 };
