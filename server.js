@@ -9,10 +9,6 @@ var port = process.env.PORT || 5000;
 var router = express.Router();
 var jsonParser = bodyParser.json();
 
-router.get('/', function (req, res) {
-  res.json({message: 'Velkommen til Fotballvarsel for Skeid.no' });
-});
-
 router.route('/teams')
     .get(function(req, res) {
       repository.findAllTeams(function(error, teams) {
