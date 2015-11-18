@@ -2,13 +2,20 @@ var controllers = angular.module('controllers', ['services', 'ngRoute']);
 
 controllers.controller('RegisterCtrl', ['$scope', '$location', '$http', function($scope, $location, $http) {
     $scope.register = function(email) {
-        console.log("Resetting secret for %s", email);
+        $scope.success = null;
+        $scope.error = null;
 
         $http.post('/api/newsecret', {email: email}, {headers: {'Content-Type': "application/json"}
         }).then(function(response) {
             console.log("Request succeeded: %s", JSON.stringify(response));
+            if (response.data.status == 'ok') {
+                $scope.success = "Registreringen var vellykket. Sjekk din e-postkasse!";
+            } else {
+                $scope.error = "Registreringen feilet!";
+            }
         }, function(response) {
             console.log("Request failed: %s", JSON.stringify(response));
+            $scope.error = "Registreringen feilet!";
         });
     };
 }]);

@@ -25,6 +25,12 @@ router.route('/newsecret')
         var email = req.body.email;
         var secret = secretGenerator.newSecret();
 
+        if (!email) {
+            return res.json({
+                status: "error"
+            });
+        }
+
         repository.findSubscriberByEmail(email, function(error, subscriber) {
             if (subscriber) {
                 console.log("Issuing new secret for %s", email);
