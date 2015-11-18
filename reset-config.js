@@ -11,7 +11,7 @@ var supportedTeams = [
   }
 ];
 
-repository.replaceTeams(supportedTeams, function(teams) {
+repository.replaceTeams(supportedTeams, function(error, teams) {
   console.log("Re-wrote configuration for " + teams.length + " teams");
 });
 
@@ -22,6 +22,6 @@ var subscribers = [
   }
 ];
 
-repository.replaceSubscribers(subscribers, function(subscribers) {
+repository.replaceSubscribers(subscribers, function(error, subscribers) {
   console.log("Re-wrote " + subscribers.length + " subscribers");
 });

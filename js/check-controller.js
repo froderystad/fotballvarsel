@@ -57,7 +57,7 @@ var alertSubscribers = function(team, newArticles, informDone) {
     console.log("Alerting %d subscribers for %s", subscribers.length, team.name);
     subscribers.forEach(function(subscriber) {
       console.log("Sending e-mail to %s about %d new articles for %s", subscriber.email, newArticles.length, team.name);
-      mailSender.sendEmail(subscriber, team, newArticles);
+      mailSender.newArticles(subscriber, team, newArticles);
     });
     informDone(team);
   });
