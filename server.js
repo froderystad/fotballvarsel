@@ -78,18 +78,7 @@ router.route('/subscribers/:email')
         res.json(subscriber || {});
       });
     })
-    .post(jsonParser, function(req, res) {
-        var email = req.params.email;
-        console.log("Inserting subscriber %s as %s", email, JSON.stringify(req.body));
-        repository.insertOrUpdateSubscriber(email, req.body, function(err, status) {
-            if (err) {
-                console.log("Error in repo: " + err);
-                res.send(err);
-            }
-            console.log("Inserted %s", email);
-            res.json(status);
-        })
-    }).put(jsonParser, function(req, res) {
+    .put(jsonParser, function(req, res) {
         var email = req.params.email;
         console.log("Updating subscriber %s to %s", email, JSON.stringify(req.body));
         repository.insertOrUpdateSubscriber(email, req.body, function(err, status) {
