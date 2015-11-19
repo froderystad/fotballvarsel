@@ -20,9 +20,8 @@ var renderArticleUrls = function(articles) {
   var str = "";
   for (i = 0; i < articles.length; i++) {
     str = str + articles[i].title + "\n";
-    str = str + "http://skeid.no" + articles[i].link + "\n\n";
+    str = str + articles[i].link + "\n\n";
   }
-  console.log("Rendering %d articles as: %s", articles.length, str);
   return str;
 };
 

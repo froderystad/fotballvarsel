@@ -2,7 +2,7 @@
 
 var expect = require('chai').expect;
 var articleUtil = require('../js/article-util.js');
-var comp = articleUtil.hashComparator;
+var comp = articleUtil.articleComparator;
 var Article = require('../js/model/article.js');
 
 var articles = [

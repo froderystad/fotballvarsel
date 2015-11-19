@@ -2,7 +2,7 @@ exports.findNew = function(freshArticles, knownArticles) {
   var newArticles = [];
 
   freshArticles.forEach(function(article) {
-    if (!existsInArray(article, knownArticles, hashComparator)) {
+    if (!existsInArray(article, knownArticles, idComparator)) {
       newArticles.push(article);
     }
   });
@@ -21,8 +21,8 @@ var existsInArray = function(object, array, comparator) {
 
 exports.existsInArray = existsInArray;
 
-var hashComparator = function(a, b) {
-  return a.hash === b.hash;
+var idComparator = function(a, b) {
+  return a.id === b.id;
 };
 
-exports.hashComparator = hashComparator;
+exports.articleComparator = idComparator;
