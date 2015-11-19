@@ -1,10 +1,5 @@
 var services = angular.module('services', ['ngResource']);
 
-services.factory('Email', function() {
-    var state = {};
-    return { theEmail: state };
-});
-
 services.factory('Subscriber', function() {
     var state = {};
     return { theSubscriber: state };

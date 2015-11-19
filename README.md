@@ -42,3 +42,6 @@ som det skal. Avslutt da prosessen med `taskkill /F /IM node.exe`
 
 Tjenesten bruker MongoDB som database. Det må legges på en unik indeks på artiklenes id-felt:
 ```db.articles.createIndex( { id: 1 }, { unique: true } )```
+
+Det samme gjelder abonnentenes email-felt:
+```db.subscribers.createIndex( { email: 1 }, { unique: true } )```

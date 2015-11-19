@@ -31,7 +31,16 @@ router.route('/newsecret')
             if (subscriber) {
                 console.log("Issuing new secret for %s", email);
                 subscriber.secret = secret;
-                updateSubscriberAndSendEmail(subscriber, res);
+                repository.updateSubscriber(email, subscriber.secret, subscriber, function(error, result) {
+                    if (error) {
+                        res.json({
+                            email: subscriber.email,
+                            status: "error"
+                        });
+                    } else {
+                        sendEmailAndRespond(subscriber, res);
+                    }
+                });
             } else {
                 console.log("Registering new subscriber %s", email);
                 var newSubscriber = {
@@ -39,33 +48,39 @@ router.route('/newsecret')
                     secret: secret,
                     teams: []
                 };
-                updateSubscriberAndSendEmail(newSubscriber, res);
+                repository.insertSubscriber(newSubscriber, function(error, result) {
+                    if (error) {
+                        res.json({
+                            email: newSubscriber.email,
+                            status: "error"
+                        });
+                    } else {
+                        sendEmailAndRespond(newSubscriber, res);
+                    }
+                })
             }
         });
     });
 
-var updateSubscriberAndSendEmail = function(subscriber, res) {
-    repository.insertOrUpdateSubscriber(subscriber.email, subscriber, function(error, result) {
-        mailSender.newSecret(subscriber, function(error, result) {
-            if (error) {
-                console.log("Error sending email: %s", JSON.stringify(error));
-                res.json({
-                    email: subscriber.email,
-                    status: "error"
-                });
-            } else {
-                res.json({
-                    email: subscriber.email,
-                    status: "ok"
-                });
-            }
-        });
-    })
+var sendEmailAndRespond = function(subscriber, res) {
+    mailSender.newSecret(subscriber, function(error, result) {
+        if (error) {
+            console.log("Error sending email: %s", JSON.stringify(error));
+            res.json({
+                email: subscriber.email,
+                status: "error"
+            });
+        } else {
+            res.json({
+                email: subscriber.email,
+                status: "ok"
+            });
+        }
+    });
 };
 
 router.route('/subscribers/:email')
     .get(function(req, res) {
-      console.log("Getting subscriber " + req.params.email);
       repository.findSubscriberByEmail(req.params.email, function(err, subscriber) {
         if (err) {
           console.log("Error in repo: " + err);
@@ -76,8 +91,17 @@ router.route('/subscribers/:email')
     })
     .put(jsonParser, function(req, res) {
         var email = req.params.email;
+        var secret = req.body.secret;
+
+        if (!email || ! secret) {
+            return res.json({
+                email: subscriber.email,
+                status: "error"
+            });
+        }
+
         console.log("Updating subscriber %s to %s", email, JSON.stringify(req.body));
-        repository.insertOrUpdateSubscriber(email, req.body, function(err, status) {
+        repository.updateSubscriber(email, secret, req.body, function(err, status) {
             if (err) {
                 console.log("Error in repo: " + err);
                 res.send(err);

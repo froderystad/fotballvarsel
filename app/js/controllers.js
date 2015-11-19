@@ -20,21 +20,11 @@ controllers.controller('RegisterCtrl', ['$scope', '$location', '$http', function
     };
 }]);
 
-controllers.controller('LoginCtrl', ['$scope', '$location', 'Email', 'Subscribers', 'Subscriber', function ($scope, $location, Email, Subscribers, Subscriber) {
-    $scope.email = Email;
-    $scope.error = null;
-
-    $scope.login = function() {
-        var email = $scope.email.email;
+controllers.controller('LoginCtrl', ['$scope', '$location', 'Subscribers', 'Subscriber', function ($scope, $location, Subscribers, Subscriber) {
+    $scope.login = function(email, secret) {
         $scope.error = null;
 
-        if (!email) {
-            $scope.error = "Ikke en e-postadresse";
-            $location.path('/login');
-            return;
-        }
-
-        Subscribers.get({email: email}, function(subscriber) {
+        Subscribers.get({email: email, secret: secret}, function(subscriber) {
             if (subscriber.email) {
                 console.log("%s logged in as %s", email, JSON.stringify(subscriber));
                 Subscriber.theSubscriber = subscriber;
@@ -42,12 +32,10 @@ controllers.controller('LoginCtrl', ['$scope', '$location', 'Email', 'Subscriber
             } else {
                 console.log("%s is unknown", email);
                 $scope.error = "Ukjent e-postadresse";
-                $location.path('/login');
             }
         }, function(response) {
             console.log("Request failed: %s", JSON.stringify(response));
             $scope.error = "En uventet feil skjedde";
-            $location.path('/login');
         });
     };
 }]);
@@ -57,7 +45,7 @@ controllers.controller('LoginByLinkCtrl', ['$scope', '$location', '$routeParams'
     var email = $routeParams.email;
     var secret = $routeParams.secret;
 
-    Subscribers.get({email: email}, function(subscriber) {
+    Subscribers.get({email: email, secret: secret}, function(subscriber) {
         if (subscriber.email) {
             console.log("%s logged in as %s", email, JSON.stringify(subscriber));
             Subscriber.theSubscriber = subscriber;
@@ -77,7 +65,7 @@ controllers.controller('SubscriberCtrl', ['$scope', '$location', 'Subscriber', '
     $scope.subscriber = Subscriber.theSubscriber;
 
     if (!$scope.subscriber.email) {
-        $location.path('/login');
+        $location.path('/');
         return;
     }
 
@@ -97,7 +85,7 @@ controllers.controller('SubscriberCtrl', ['$scope', '$location', 'Subscriber', '
 
     var subscribe = function(team) {
         $scope.subscriber.teams.push(team.name);
-        Subscribers.update({email: $scope.subscriber.email}, $scope.subscriber);
+        Subscribers.update({email: $scope.subscriber.email, secret: $scope.subscriber.secret}, $scope.subscriber);
         console.log("Subscribed to %s", team.name);
     };
 
@@ -114,7 +102,7 @@ controllers.controller('SubscriberCtrl', ['$scope', '$location', 'Subscriber', '
         }(team);
         if (i > -1) {
             $scope.subscriber.teams.splice(i, 1);
-            Subscribers.update({email: $scope.subscriber.email}, $scope.subscriber);
+            Subscribers.update({email: $scope.subscriber.email, secret: $scope.subscriber.secret}, $scope.subscriber);
             console.log("Unsubscribed to %s", team.name);
         }
     };

@@ -9,10 +9,10 @@
     link med ny nøkkel, og kan fortsette å redigere dine abonnementer. Den gamle nøkkelen vil ikke virke lenger.
 </p>
 
-<div class="form-signin">
+<form class="form-signin" ng-submit="register(email)">
 <input type="email" class="form-control" placeholder="E-postadresse" required autofocus ng-model="email">
-<button type="submit" class="btn btn-lg btn-primary btn-block" ng-click="register(email)">Registrer</button>
-</div>
+<button type="submit" class="btn btn-lg btn-primary btn-block">Registrer</button>
+</form>
 
 <div class="alert alert-success" role="alert" ng-if="success != null">{{success}}</div>
 <div class="alert alert-danger" role="alert" ng-if="error != null">{{error}}</div>

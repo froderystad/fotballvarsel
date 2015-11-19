@@ -49,12 +49,25 @@ exports.findSubscriberByEmail = function(email, callback) {
   });
 };
 
-exports.insertOrUpdateSubscriber = function(email, subscriber, callback) {
+exports.insertSubscriber = function(subscriber, callback) {
   delete subscriber._id;
   mongoClient.connect(url, function(error, db) {
     if (error) return callback(error, undefined);
     var collection = db.collection('subscribers');
-    collection.updateOne({email: email}, subscriber, {upsert: true}, function(error, subscriber) {
+    collection.insertOne(subscriber, function(error, subscriber) {
+      if (error) console.log("insertOne error: " + error);
+      db.close();
+      callback(error, subscriber);
+    })
+  });
+};
+
+exports.updateSubscriber = function(email, secret, subscriber, callback) {
+  delete subscriber._id;
+  mongoClient.connect(url, function(error, db) {
+    if (error) return callback(error, undefined);
+    var collection = db.collection('subscribers');
+    collection.updateOne({email: email, secret: secret}, subscriber, function(error, subscriber) {
       if (error) console.log("updateOne error: " + error);
       db.close();
       callback(error, subscriber);

@@ -1,7 +1,8 @@
-E-mail: {{subscriber.email}}
+<p>Velg for hvilke lagsider du ønsker å motta varsler til <strong>{{subscriber.email}}</strong>:</p>
 <ul>
     <li ng-repeat="team in teams">
-        <input type="checkbox" ng-checked="subscribes(team)" ng-click="subscriptionChanged(team)">{{team.name}}
+        <input type="checkbox" ng-checked="subscribes(team)" ng-click="subscriptionChanged(team)"> {{team.name}}
+        (<a href="{{team.url}}" rel="external" target="_blank">gå til side <span class="fa fa-external-link"></span></a>)
     </li>
 </ul>
 <div class="alert alert-success" role="alert" ng-if="success != null">{{success}}</div>

@@ -1,9 +1,16 @@
-.error {
-    color: red;
+h1 a:link {
+    color: black;
+    text-decoration: none;
 }
 
-li {
+h1 a:visited {
+    color: black;
+    text-decoration: none;
+}
 
+h1 a:active {
+    color: black;
+    text-decoration: none;
 }
 
 /* Sticky footer styles
@@ -62,11 +69,10 @@ body {
 }
 .form-signin input[type="email"] {
     margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
 }
 .form-signin input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+}
+
+.form-signin button {
+    margin-top: 10px;
 }
