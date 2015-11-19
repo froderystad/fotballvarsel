@@ -140,7 +140,8 @@ controllers.controller('SubscriberCtrl', ['$scope', '$location', 'Subscriber', '
     };
 }]);
 
-controllers.controller('WelcomeCtrl', ['$scope', 'Teams', function($scope, Teams) {
+controllers.controller('WelcomeCtrl', ['$scope', 'Teams', 'Subscriber', function($scope, Teams, Subscriber) {
+    $scope.subscriber = Subscriber.theSubscriber;
     $scope.teams = Teams.query();
 }]);
 
