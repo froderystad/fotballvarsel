@@ -85,8 +85,18 @@ controllers.controller('SubscriberCtrl', ['$scope', '$location', 'Subscriber', '
 
     var subscribe = function(team) {
         $scope.subscriber.teams.push(team.name);
-        Subscribers.update({email: $scope.subscriber.email, secret: $scope.subscriber.secret}, $scope.subscriber);
-        console.log("Subscribed to %s", team.name);
+        Subscribers.update({email: $scope.subscriber.email, secret: $scope.subscriber.secret}, $scope.subscriber, function(result) {
+            if (result && result.ok == 1) {
+                console.log("Subscribed to %s", team.name);
+                $scope.success = "Du abonnerer nå på " + team.name;
+            } else {
+                console.log("Subscriber update failed: %s", JSON.stringify(response));
+                $scope.error = "Oppdateringen feilet! Prøv igjen senere.";
+            }
+        }, function(response) {
+            console.log("Subscriber update failed: %s", JSON.stringify(response));
+            $scope.error = "Oppdateringen feilet! Prøv igjen senere.";
+        });
     };
 
     var unsubscribe = function(team) {
@@ -102,8 +112,18 @@ controllers.controller('SubscriberCtrl', ['$scope', '$location', 'Subscriber', '
         }(team);
         if (i > -1) {
             $scope.subscriber.teams.splice(i, 1);
-            Subscribers.update({email: $scope.subscriber.email, secret: $scope.subscriber.secret}, $scope.subscriber);
-            console.log("Unsubscribed to %s", team.name);
+            Subscribers.update({email: $scope.subscriber.email, secret: $scope.subscriber.secret}, $scope.subscriber, function(result) {
+                if (result && result.ok == 1) {
+                    console.log("Unsubscribed to %s", team.name);
+                    $scope.success = "Du abonnerer ikke lenger på " + team.name;
+                } else {
+                    console.log("Subscriber update failed: %s", JSON.stringify(response));
+                    $scope.error = "Oppdateringen feilet! Prøv igjen senere.";
+                }
+            }, function(response) {
+                console.log("Subscriber update failed: %s", JSON.stringify(response));
+                $scope.error = "Oppdateringen feilet! Prøv igjen senere.";
+            });
         }
     };
 
@@ -114,10 +134,8 @@ controllers.controller('SubscriberCtrl', ['$scope', '$location', 'Subscriber', '
         console.log("Subscription changed");
         if ($scope.subscribes(team)) {
             unsubscribe(team);
-            $scope.success = "Du abonnerer ikke lenger på " + team.name;
         } else {
             subscribe(team);
-            $scope.success = "Du abonnerer nå på " + team.name;
         }
     };
 }]);
