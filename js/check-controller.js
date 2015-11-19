@@ -5,10 +5,16 @@ var repository = require('./repository.js');
 var mailSender = require('./mail-sender.js');
 var iconvLite = require('iconv-lite');
 
+var numTeams = undefined;
+var numTeamsDone = 0;
+
 exports.execute = function() {
-  repository.findAllTeams(function(error, teams) {
-    teams.forEach(function(team, index, array) {
-      requestBody(team, handleResponseBody);
+  repository.connect(function() {
+    repository.findAllTeams(function (error, teams) {
+      numTeams = teams.length;
+      teams.forEach(function (team, index, array) {
+        requestBody(team, handleResponseBody);
+      });
     });
   });
 };
@@ -64,6 +70,11 @@ var alertSubscribers = function(team, newArticles, informDone) {
 };
 
 var informDone = function(team) {
+  numTeamsDone++;
   console.log("Done checking %s", team.name);
+
+  if (numTeamsDone == numTeams) {
+    repository.close();
+  }
 };
 

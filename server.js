@@ -9,6 +9,8 @@ var port = process.env.PORT || 5000;
 var router = express.Router();
 var jsonParser = bodyParser.json();
 
+repository.connect();
+
 router.route('/teams')
     .get(function(req, res) {
       repository.findAllTeams(function(error, teams) {
@@ -117,3 +119,11 @@ app.use(express.static(__dirname + '/app'));
 
 app.listen(port);
 console.log('Fotballvarsel listening on port %s', port);
+
+var cleanup = function() {
+    repository.close();
+    process.exit(0);
+};
+
+process.on('SIGINT', cleanup);
+process.on('SIGTERM', cleanup);

@@ -11,17 +11,12 @@ var supportedTeams = [
   }
 ];
 
-repository.replaceTeams(supportedTeams, function(error, teams) {
-  console.log("Re-wrote configuration for " + teams.length + " teams");
-});
-
-var subscribers = [
-  {
-    'email': 'frode.rystad@gmail.com',
-    'teams': ['G2009', 'G2007']
-  }
-];
-
-repository.deleteSubscribers(function(error, numDeleted) {
-  console.log("Deleted " + numDeleted + " subscribers");
+repository.connect(function() {
+  repository.replaceTeams(supportedTeams, function(error, teams) {
+    console.log("Re-wrote configuration for " + teams.length + " teams");
+    repository.deleteSubscribers(function(error, numDeleted) {
+      console.log("Deleted " + numDeleted + " subscribers");
+      repository.close();
+    });
+  });
 });
