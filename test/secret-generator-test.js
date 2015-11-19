@@ -9,5 +9,5 @@ describe('Secret generator', function() {
             var secret = secretGenerator.newSecret();
             expect(secretGenerator.newSecret().length).to.equal(36);
         });
-    })
+    });
 });

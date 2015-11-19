@@ -58,7 +58,7 @@ exports.insertSubscriber = function(subscriber, callback) {
       if (error) console.log("insertOne error: " + error);
       db.close();
       callback(error, subscriber);
-    })
+    });
   });
 };
 
@@ -71,7 +71,7 @@ exports.updateSubscriber = function(email, secret, subscriber, callback) {
       if (error) console.log("updateOne error: " + error);
       db.close();
       callback(error, subscriber);
-    })
+    });
   });
 };
 

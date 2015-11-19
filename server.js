@@ -57,7 +57,7 @@ router.route('/newsecret')
                     } else {
                         sendEmailAndRespond(newSubscriber, res);
                     }
-                })
+                });
             }
         });
     });
@@ -108,7 +108,7 @@ router.route('/subscribers/:email')
             }
             console.log("Updated %s", email);
             res.json(status);
-        })
+        });
     });
 
 app.use('/api', router);

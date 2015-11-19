@@ -31,8 +31,8 @@ exports.newSecret = function(subscriber, callback) {
         "From": fromAddress,
         "To": subscriber.email,
         "Subject": "Din innloggingslink til Fotballvarsel",
-        "TextBody": "Din innloggingslink til Fotballvarsel:\n"
-            + protocol + "://" + hostnameWithPort + "/#/loginByLink/"+ subscriber.email + "?secret=" + subscriber.secret
-            + "\n\n" + footer
+        "TextBody": "Din innloggingslink til Fotballvarsel:\n" +
+            protocol + "://" + hostnameWithPort + "/#/loginByLink/"+ subscriber.email + "?secret=" + subscriber.secret +
+            "\n\n" + footer
     }, callback);
 };
