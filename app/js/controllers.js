@@ -63,6 +63,8 @@ controllers.controller('LoginByLinkCtrl', ['$scope', '$location', '$routeParams'
 
 controllers.controller('SubscriberCtrl', ['$scope', '$location', 'Subscriber', 'Subscribers', 'Teams', function ($scope, $location, Subscriber, Subscribers, Teams) {
     $scope.subscriber = Subscriber.theSubscriber;
+    $scope.successes = [];
+    $scope.errors = [];
 
     if (!$scope.subscriber.email) {
         $location.path('/');
@@ -88,14 +90,14 @@ controllers.controller('SubscriberCtrl', ['$scope', '$location', 'Subscriber', '
         Subscribers.update({email: $scope.subscriber.email, secret: $scope.subscriber.secret}, $scope.subscriber, function(result) {
             if (result && result.ok == 1) {
                 console.log("Subscribed to %s", team.name);
-                $scope.success = "Du abonnerer nå på " + team.name;
+                updateSubscriptionStatus("Registrering utført. Du abonnerer nå på " + team.name + ".", $scope.successes);
             } else {
                 console.log("Subscriber update failed: %s", JSON.stringify(response));
-                $scope.error = "Oppdateringen feilet! Prøv igjen senere.";
+                updateSubscriptionStatus("Oppdateringen feilet! Prøv igjen senere.", $scope.errors);
             }
         }, function(response) {
             console.log("Subscriber update failed: %s", JSON.stringify(response));
-            $scope.error = "Oppdateringen feilet! Prøv igjen senere.";
+            updateSubscriptionStatus("Oppdateringen feilet! Prøv igjen senere.", $scope.errors);
         });
     };
 
@@ -115,22 +117,19 @@ controllers.controller('SubscriberCtrl', ['$scope', '$location', 'Subscriber', '
             Subscribers.update({email: $scope.subscriber.email, secret: $scope.subscriber.secret}, $scope.subscriber, function(result) {
                 if (result && result.ok == 1) {
                     console.log("Unsubscribed to %s", team.name);
-                    $scope.success = "Du abonnerer ikke lenger på " + team.name;
+                    updateSubscriptionStatus("Registrering utført. Du abonnerer ikke lenger på " + team.name + ".", $scope.successes);
                 } else {
                     console.log("Subscriber update failed: %s", JSON.stringify(response));
-                    $scope.error = "Oppdateringen feilet! Prøv igjen senere.";
+                    updateSubscriptionStatus("Oppdateringen feilet! Prøv igjen senere.", $scope.errors);
                 }
             }, function(response) {
                 console.log("Subscriber update failed: %s", JSON.stringify(response));
-                $scope.error = "Oppdateringen feilet! Prøv igjen senere.";
+                updateSubscriptionStatus("Oppdateringen feilet! Prøv igjen senere.", $scope.errors);
             });
         }
     };
 
     $scope.subscriptionChanged = function(team) {
-        $scope.success = null;
-        $scope.error = null;
-
         console.log("Subscription changed");
         if ($scope.subscribes(team)) {
             unsubscribe(team);
@@ -149,4 +148,17 @@ controllers.controller('WelcomeCtrl', ['$scope', '$location', 'Teams', 'Subscrib
     };
 }]);
 
-
+var updateSubscriptionStatus = function(message, messages) {
+    if (Array.prototype.indexOf) {
+        var i = messages.indexOf(message);
+        if (i > -1) {
+            messages.splice(i, 1);
+        }
+    } else {
+        // Must limit to max 2 because Angular ng-loop does not allow duplicates
+        if (messages.length > 1) {
+            messages.pop();
+        }
+    }
+    messages.unshift(message);
+};

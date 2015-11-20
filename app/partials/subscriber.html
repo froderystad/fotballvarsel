@@ -7,5 +7,5 @@
     </li>
 </ul>
 <p>Du kan lukke denne siden når du er fornøyd med innstillingene.</p>
-<div class="alert alert-success" role="alert" ng-if="success != null">{{success}}</div>
-<div class="alert alert-danger" role="alert" ng-if="error != null">{{error}}</div>
+<div class="alert alert-success" role="alert" ng-repeat="success in successes">{{success}}</div>
+<div class="alert alert-danger" role="alert" ng-repeat="error in errors">{{error}}</div>

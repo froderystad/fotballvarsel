@@ -83,3 +83,7 @@ body {
     margin-right: auto;
     margin-bottom: 20px;
 }
+
+.alert {
+    margin-bottom: 5px;
+}
