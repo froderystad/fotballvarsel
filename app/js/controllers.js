@@ -140,9 +140,13 @@ controllers.controller('SubscriberCtrl', ['$scope', '$location', 'Subscriber', '
     };
 }]);
 
-controllers.controller('WelcomeCtrl', ['$scope', 'Teams', 'Subscriber', function($scope, Teams, Subscriber) {
+controllers.controller('WelcomeCtrl', ['$scope', '$location', 'Teams', 'Subscriber', function($scope, $location, Teams, Subscriber) {
     $scope.subscriber = Subscriber.theSubscriber;
     $scope.teams = Teams.query();
+
+    $scope.navigateRegister = function() {
+        $location.path('/register');
+    };
 }]);
 
 

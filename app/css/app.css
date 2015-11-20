@@ -76,3 +76,10 @@ body {
 .form-signin button {
     margin-top: 10px;
 }
+
+#welcome-register {
+    display: block;
+    margin-left: 40px;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
