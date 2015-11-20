@@ -1,9 +1,11 @@
-<p>Velg for hvilke lagsider du ønsker å motta varsler til <strong>{{subscriber.email}}</strong>:</p>
+<p>Du er innlogget som <strong>{{subscriber.email}}</strong>.</p>
+<p>Velg hvilke lag du ønsker varsel for:</p>
 <ul>
     <li ng-repeat="team in teams">
         <input type="checkbox" ng-checked="subscribes(team)" ng-click="subscriptionChanged(team)"> {{team.name}}
         (<a href="{{team.url}}" rel="external" target="_blank">gå til side <span class="fa fa-external-link"></span></a>)
     </li>
 </ul>
+<p>Du kan lukke denne siden når du er fornøyd med innstillingene.</p>
 <div class="alert alert-success" role="alert" ng-if="success != null">{{success}}</div>
 <div class="alert alert-danger" role="alert" ng-if="error != null">{{error}}</div>
