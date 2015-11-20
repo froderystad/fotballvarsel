@@ -5,7 +5,7 @@ var repository = require('./repository.js');
 var mailSender = require('./mail-sender.js');
 var iconvLite = require('iconv-lite');
 
-var numTeams = undefined;
+var numTeams;
 var numTeamsDone = 0;
 
 exports.execute = function() {

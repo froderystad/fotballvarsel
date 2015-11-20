@@ -1,7 +1,7 @@
 var mongoClient = require('mongodb').MongoClient;
 var mongoUrl = process.env.MONGOLAB_URI;
 
-var db = undefined;
+var db;
 
 exports.connect = function(callback) {
   mongoClient.connect(mongoUrl, function(error, mongoDb) {

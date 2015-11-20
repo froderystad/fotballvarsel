@@ -1,6 +1,8 @@
 var assert = require('chai').assert;
+var expect = require('chai').expect;
 var fs = require('fs');
 var parser = require('../js/page-html-parser.js');
+var articleUtil = require('../js/article-util.js');
 
 describe('Page HTML Parser', function() {
   describe('#parseArticles()', function () {
@@ -19,6 +21,15 @@ describe('Page HTML Parser', function() {
     });
     it('should have a hash', function () {
       assert.notEqual(undefined, articles[0].hash);
+    });
+  });
+
+  describe('Integration test which finds new articles', function() {
+    var knownArticles = parser.parseArticles(fs.readFileSync('./test/source-base-g07.html', 'utf-8'));
+    var freshArticles = parser.parseArticles(fs.readFileSync('./test/source-change-g07.html', 'utf-8'));
+
+    it('finds the new articles', function() {
+      expect(articleUtil.findNew(freshArticles, knownArticles)).to.have.length(3);
     });
   });
 });
