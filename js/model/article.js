@@ -1,8 +1,8 @@
-function Article(id, title, link, team) {
+function Article(id, title, link, teamName) {
   this.id = id;
   this.title = title;
   this.link = link;
-  this.team = team.name;
+  this.teamName = teamName;
 }
 
 module.exports = Article;

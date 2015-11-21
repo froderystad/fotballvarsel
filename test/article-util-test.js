@@ -5,8 +5,8 @@ var articleUtil = require('../js/article-util.js');
 var comp = articleUtil.articleComparator;
 var Article = require('../js/model/article.js');
 
-var article1 = new Article(1, "Title 1", "http://foo.org");
-var article2 = new Article(2, "Title 2", "http://bar.org");
+var article1 = new Article(1, "Title 1", "http://foo.org", "Boys");
+var article2 = new Article(2, "Title 2", "http://bar.org", "Boys");
 var articles = [ article1, article2 ];
 
 describe('Article utility', function() {
@@ -31,11 +31,15 @@ describe('Article utility', function() {
 
 describe('Array finder', function() {
   it('Finds element in array', function() {
-    var existingArticle = new Article(1, "Title 1", "http://foo.org");
+    var existingArticle = new Article(1, "Title 1", "http://foo.org", "Boys");
     expect(articleUtil.existsInArray(existingArticle, articles, comp)).to.be.true;
   });
-  it('Reports elements not found', function() {
-    var newArticle = new Article(3, "Title 3", "http://baz.org");
+  it('Reports elements not found when very different', function() {
+    var newArticle = new Article(3, "Title 3", "http://baz.org", "Boys");
+    expect(articleUtil.existsInArray(newArticle, articles, comp)).to.be.false;
+  });
+  it('Reports elements not found when different team', function() {
+    var newArticle = new Article(1, "Title 1", "http://foo.org", "Girls");
     expect(articleUtil.existsInArray(newArticle, articles, comp)).to.be.false;
   });
 });

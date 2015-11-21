@@ -6,7 +6,7 @@ var articleUtil = require('../js/article-util.js');
 
 describe('Page HTML Parser', function() {
   describe('#parseArticles()', function () {
-    var articles = parser.parseArticles(fs.readFileSync('./test/source-base-g07.html', 'utf-8'));
+    var articles = parser.parseArticles('Boys', fs.readFileSync('./test/source-base-g07.html', 'utf-8'));
     it('should return correct number of articles', function () {
       assert.equal(6, articles.length);
     });
@@ -19,14 +19,14 @@ describe('Page HTML Parser', function() {
     it('should have an id', function () {
       assert.isNumber(articles[0].id);
     });
-    it('should have a hash', function () {
-      assert.notEqual(undefined, articles[0].hash);
+    it('should have a team', function () {
+      assert.equal('Boys', articles[0].teamName);
     });
   });
 
   describe('Integration test which finds new articles', function() {
-    var knownArticles = parser.parseArticles(fs.readFileSync('./test/source-base-g07.html', 'utf-8'));
-    var freshArticles = parser.parseArticles(fs.readFileSync('./test/source-change-g07.html', 'utf-8'));
+    var knownArticles = parser.parseArticles('Boys', fs.readFileSync('./test/source-base-g07.html', 'utf-8'));
+    var freshArticles = parser.parseArticles('Boys', fs.readFileSync('./test/source-change-g07.html', 'utf-8'));
 
     it('finds the new articles', function() {
       expect(articleUtil.findNew(freshArticles, knownArticles)).to.have.length(3);

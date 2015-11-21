@@ -22,7 +22,7 @@ var existsInArray = function(object, array, comparator) {
 exports.existsInArray = existsInArray;
 
 var comparator = function(a, b) {
-  return a.id === b.id && a.team == b.team;
+  return a.id === b.id && a.teamName == b.teamName;
 };
 
 exports.articleComparator = comparator;

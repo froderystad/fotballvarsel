@@ -36,13 +36,6 @@ exports.findAllArticlesForTeam = function(team, callback) {
   });
 };
 
-var findAll = function(collectionName, callback) {
-  var collection = db.collection(collectionName);
-  collection.find({}).toArray(function(error, items) {
-    callback(error, items || []);
-  });
-};
-
 exports.insertArticles = function(articles, callback) {
   if (articles.length === 0) {
     callback(undefined, articles);
