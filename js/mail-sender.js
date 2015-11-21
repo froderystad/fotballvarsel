@@ -11,7 +11,7 @@ exports.sendEmail = function(subscriber, team, newArticles) {
     client.sendEmail({
       "From": fromAddress,
       "To": subscriber.email,
-      "Subject": team.name + " har " + newArticles.length + " nye artikler", 
+      "Subject": team.name + " har nye artikler",
       "TextBody": "Disse artiklene er nye:\n\n" + renderArticleUrls(newArticles) +
           footer + "\n\nLink for å endre dine abonnementer:\n" + loginLink(subscriber)
   });
