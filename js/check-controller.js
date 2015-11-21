@@ -35,10 +35,10 @@ var decodeBody = function(binaryBody) {
 };
 
 var handleResponseBody = function(team, body) {
-  var freshArticles = parser.parseArticles(body);
+  var freshArticles = parser.parseArticles(team, body);
   console.log("Read %d articles for %s from web", freshArticles.length, team.name);
 
-  repository.findAllArticles(function(error, knownArticles) {
+  repository.findAllArticlesForTeam(team, function(error, knownArticles) {
     var newArticles = articleUtil.findNew(freshArticles, knownArticles);
     saveNewArticles(team, newArticles, alertSubscribers);
   });

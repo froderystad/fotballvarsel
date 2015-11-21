@@ -23,11 +23,17 @@ exports.close = function() {
 };
 
 exports.findAllTeams = function(callback) {
-  findAll("teams", callback);
+  var collection = db.collection('teams');
+  collection.find({}).toArray(function(error, items) {
+    callback(error, items || []);
+  });
 };
 
-exports.findAllArticles = function(callback) {
-  findAll("articles", callback);
+exports.findAllArticlesForTeam = function(team, callback) {
+  var collection = db.collection('articles');
+  collection.find({team: team.name}).toArray(function(error, items) {
+    callback(error, items || []);
+  });
 };
 
 var findAll = function(collectionName, callback) {

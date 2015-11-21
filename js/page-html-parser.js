@@ -3,7 +3,7 @@ var Article = require('./model/article.js');
 
 var urlPrefix = 'http://skeid.no';
 
-exports.parseArticles = function(htmlStr) {
+exports.parseArticles = function(team, htmlStr) {
   var $ = cheerio.load(htmlStr);
 
   var articles = [];
@@ -13,7 +13,7 @@ exports.parseArticles = function(htmlStr) {
     var link = urlPrefix + $(this).find('a').attr('href');
     var id = findIdFromLink(link);
 
-    var article = new Article(id, title, link);
+    var article = new Article(id, title, link, team);
     articles.push(article);
   });
 
