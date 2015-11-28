@@ -12,19 +12,26 @@ var articles = [ article1, article2 ];
 describe('Article utility', function() {
   describe('When all articles are new', function () {
     it('returns all articles', function () {
-      expect(articleUtil.findNew(articles, [])).to.deep.equal(articles);
+      expect(articleUtil.findDiff(articles, []).created).to.deep.equal(articles);
     });
   });
 
   describe('When no articles are new', function () {
     it('returns no articles', function () {
-      expect(articleUtil.findNew(articles, articles)).to.deep.equal([]);
+      expect(articleUtil.findDiff(articles, articles).created).to.deep.equal([]);
     });
   });
 
   describe('When one article is new', function() {
     it('returns the new article', function() {
-        expect(articleUtil.findNew(articles, articles.slice(0, 1))).to.deep.equal([article2]);
+        expect(articleUtil.findDiff(articles, articles.slice(0, 1)).created).to.deep.equal([article2]);
+    });
+  });
+
+  describe('When one article is updated', function() {
+    it('returns the updated article', function() {
+      var updatedArticle = new Article(1, "Title 3", "http://foo.org", "Boys");
+        expect(articleUtil.findDiff([updatedArticle], articles).updated).to.deep.equal([updatedArticle]);
     });
   });
 });

@@ -39,20 +39,31 @@ var handleResponseBody = function(team, body) {
   console.log("Read %d articles for %s from web", freshArticles.length, team.name);
 
   repository.findAllArticlesForTeam(team.name, function(error, knownArticles) {
-    var newArticles = articleUtil.findNew(freshArticles, knownArticles);
-    saveNewArticles(team, newArticles, alertSubscribers);
+    var articleStatus = articleUtil.findDiff(freshArticles, knownArticles);
+    deleteUpdatedArticles(team, articleStatus); // simple solution that avoids updates
   });
 };
 
-var saveNewArticles = function(team, newArticles, alertSubscribers) {
+var deleteUpdatedArticles = function(team, articleStatus) {
+  if (articleStatus.updated.length > 0) {
+    repository.deleteArticles(articleStatus.updated, function (error, deletedCount) {
+      var newArticles = articleStatus.created.concat(articleStatus.updated);
+      saveNewArticles(team, newArticles);
+    });
+  } else {
+    saveNewArticles(team, articleStatus.created);
+  }
+};
+
+var saveNewArticles = function(team, newArticles) {
   repository.insertArticles(newArticles, function(error, insertedArticles) {
     var numInserted = insertedArticles.length;
     if (numInserted > 0) console.log("Found %d new articles for %s", numInserted, team.name);
-    alertSubscribers(team, newArticles, informDone);
+    alertSubscribers(team, newArticles);
   });
 };
 
-var alertSubscribers = function(team, newArticles, informDone) {
+var alertSubscribers = function(team, newArticles) {
   if (newArticles.length === 0) {
     informDone(team);
     return;

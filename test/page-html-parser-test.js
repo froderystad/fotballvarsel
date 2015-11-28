@@ -29,7 +29,7 @@ describe('Page HTML Parser', function() {
     var freshArticles = parser.parseArticles('Boys', fs.readFileSync('./test/source-change-g07.html', 'utf-8'));
 
     it('finds the new articles', function() {
-      expect(articleUtil.findNew(freshArticles, knownArticles)).to.have.length(3);
+      expect(articleUtil.findDiff(freshArticles, knownArticles).created).to.have.length(3);
     });
   });
 });

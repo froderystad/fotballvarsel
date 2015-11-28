@@ -1,5 +1,6 @@
 var mongoClient = require('mongodb').MongoClient;
 var mongoUrl = process.env.MONGOLAB_URI;
+var Article = require('./model/article.js');
 
 var db;
 
@@ -32,6 +33,10 @@ exports.findAllTeams = function(callback) {
 exports.findAllArticlesForTeam = function(team, callback) {
   var collection = db.collection('articles');
   collection.find({team: team.name}).toArray(function(error, items) {
+    var prototype = new Article();
+    items.forEach(function(article) {
+        Object.setPrototypeOf(article, prototype);
+    });
     callback(error, items || []);
   });
 };
@@ -46,6 +51,17 @@ exports.insertArticles = function(articles, callback) {
   collection.insertMany(articles, function(error, result) {
     if (error) console.log("insertMany error: " + error);
     callback(error, result.ops);
+  });
+};
+
+exports.deleteArticles = function(articles, callback) {
+  var idsToDelete = articles.map(function(article) {
+    return article.id;
+  });
+  var collection = db.collection('articles');
+  collection.deleteMany({id: {$in: idsToDelete}}, function(error, result) {
+    if (error) console.log("deleteMany error: " + error);
+    callback(error, result.deletedCount);
   });
 };
 
