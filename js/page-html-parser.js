@@ -8,7 +8,7 @@ exports.parseArticles = function(teamName, htmlStr) {
 
   var articles = [];
 
-  $('div .featured').each(function() {
+  $('div .item .w-box').each(function() {
     var title = $(this).find('h2').text();
     var link = urlPrefix + $(this).find('a').attr('href');
     var id = findIdFromLink(link);

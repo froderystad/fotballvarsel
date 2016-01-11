@@ -8,7 +8,7 @@ describe('Page HTML Parser', function() {
   describe('#parseArticles()', function () {
     var articles = parser.parseArticles('Boys', fs.readFileSync('./test/source-base-g07.html', 'utf-8'));
     it('should return correct number of articles', function () {
-      assert.equal(6, articles.length);
+      assert.equal(10, articles.length);
     });
     it('should have a title', function () {
       assert.notEqual(undefined, articles[0].title);
@@ -29,7 +29,9 @@ describe('Page HTML Parser', function() {
     var freshArticles = parser.parseArticles('Boys', fs.readFileSync('./test/source-change-g07.html', 'utf-8'));
 
     it('finds the new articles', function() {
-      expect(articleUtil.findDiff(freshArticles, knownArticles).created).to.have.length(3);
+      var articleDiff = articleUtil.findDiff(freshArticles, knownArticles);
+        expect(articleDiff.created).to.have.length(1);
+        expect(articleDiff.updated).to.have.length(1);
     });
   });
 });
