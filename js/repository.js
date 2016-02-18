@@ -7,7 +7,7 @@ var db;
 exports.connect = function(callback) {
   mongoClient.connect(mongoUrl, function(error, mongoDb) {
     if (error) {
-      console.log(JSON.stringify(error));
+      console.error(JSON.stringify(error));
       return;
     }
     db = mongoDb;
@@ -49,7 +49,7 @@ exports.insertArticles = function(articles, callback) {
   
   var collection = db.collection('articles');
   collection.insertMany(articles, function(error, result) {
-    if (error) console.log("insertMany error: " + error);
+    if (error) console.error("insertMany error: " + error);
     callback(error, result.ops);
   });
 };
@@ -60,7 +60,7 @@ exports.deleteArticles = function(articles, callback) {
   });
   var collection = db.collection('articles');
   collection.deleteMany({id: {$in: idsToDelete}}, function(error, result) {
-    if (error) console.log("deleteMany error: " + error);
+    if (error) console.error("deleteMany error: " + error);
     callback(error, result.deletedCount);
   });
 };
@@ -68,7 +68,7 @@ exports.deleteArticles = function(articles, callback) {
 exports.findSubscriberByEmail = function(email, callback) {
   var collection = db.collection('subscribers');
   collection.findOne({ email: email }, function(error, subscriber) {
-    if (error) console.log("findOne error: " + error);
+    if (error) console.error("findOne error: " + error);
     callback(error, subscriber);
   });
 };
@@ -77,7 +77,7 @@ exports.insertSubscriber = function(subscriber, callback) {
   delete subscriber._id;
   var collection = db.collection('subscribers');
   collection.insertOne(subscriber, function(error, subscriber) {
-    if (error) console.log("insertOne error: " + error);
+    if (error) console.error("insertOne error: " + error);
     callback(error, subscriber);
   });
 };
@@ -86,7 +86,7 @@ exports.updateSubscriber = function(email, secret, subscriber, callback) {
   delete subscriber._id;
   var collection = db.collection('subscribers');
   collection.updateOne({email: email, secret: secret}, subscriber, function(error, subscriber) {
-    if (error) console.log("updateOne error: " + error);
+    if (error) console.error("updateOne error: " + error);
     callback(error, subscriber);
   });
 };
@@ -94,7 +94,7 @@ exports.updateSubscriber = function(email, secret, subscriber, callback) {
 exports.findSubscribersForTeam = function(team, callback) {
   var collection = db.collection('subscribers');
   collection.find({ teams: { $in: [team.name] } }).toArray(function(error, subscribers) {
-    if (error) console.log("find error: " + error);
+    if (error) console.error("find error: " + error);
     callback(error, subscribers);
   });
 };
@@ -103,7 +103,7 @@ exports.replaceTeams = function(teams, callback) {
   var collection = db.collection("teams");
   collection.deleteMany({}, function(error, result) {
     if (error) {
-      console.log("deleteMany error: " + error);
+      console.error("deleteMany error: " + error);
       return callback(error, undefined);
     }
     collection.insertMany(teams, function(error, result) {
@@ -116,7 +116,7 @@ exports.replaceTeams = function(teams, callback) {
 exports.deleteSubscribers = function(callback) {
   var collection = db.collection("subscribers");
   collection.deleteMany({}, function (error, result) {
-    if (error) console.log("deleteMany error: " + error);
+    if (error) console.error("deleteMany error: " + error);
     return callback(error, result.deletedCount);
   });
 };

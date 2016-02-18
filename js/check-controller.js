@@ -20,11 +20,11 @@ exports.execute = function() {
 };
 
 var requestBody = function(team, handleResponseBody) {
-  request({ uri: team.url, encoding: 'binary'}, function (error, response, binaryBody) {
+  request({ uri: team.url, encoding: 'binary', timeout: 15000}, function (error, response, binaryBody) {
     if (!error && response.statusCode == 200) {
       handleResponseBody(team, decodeBody(binaryBody));
     } else {
-      console.log("Failed fetching " + team.url);
+      console.error("Failed fetching " + team.url, error);
     }
   });
 };
@@ -70,7 +70,7 @@ var alertSubscribers = function(team, newArticles) {
   }
 
   repository.findSubscribersForTeam(team, function(error, subscribers) {
-    if (error) console.log("Error finding subscribers for team %s", team.name);
+    if (error) console.error("Error finding subscribers for team %s", team.name);
     console.log("Alerting %d subscribers for %s", subscribers.length, team.name);
     subscribers.forEach(function(subscriber) {
       console.log("Sending e-mail to %s about %d new articles for %s", subscriber.email, newArticles.length, team.name);
