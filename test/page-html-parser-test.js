@@ -4,11 +4,15 @@ var fs = require('fs');
 var parser = require('../js/page-html-parser.js');
 var articleUtil = require('../js/article-util.js');
 
+var isNan = function(number) {
+    return number !== number;
+};
+
 describe('Page HTML Parser', function() {
   describe('#parseArticles()', function () {
-    var articles = parser.parseArticles('Boys', fs.readFileSync('./test/source-base-g07.html', 'utf-8'));
+    var articles = parser.parseArticles('Boys', fs.readFileSync('./test/source-base.html', 'utf-8'));
     it('should return correct number of articles', function () {
-      assert.equal(10, articles.length);
+      assert.equal(8, articles.length);
     });
     it('should have a title', function () {
       assert.notEqual(undefined, articles[0].title);
@@ -17,7 +21,9 @@ describe('Page HTML Parser', function() {
       assert.notEqual(undefined, articles[0].link);
     });
     it('should have an id', function () {
-      assert.isNumber(articles[0].id);
+      articles.forEach(function(article) {
+        assert.isFalse(isNan(article.id), "Article " + article.title + " has no ID");
+      });
     });
     it('should have a team', function () {
       assert.equal('Boys', articles[0].teamName);
@@ -25,8 +31,8 @@ describe('Page HTML Parser', function() {
   });
 
   describe('Integration test which finds new articles', function() {
-    var knownArticles = parser.parseArticles('Boys', fs.readFileSync('./test/source-base-g07.html', 'utf-8'));
-    var freshArticles = parser.parseArticles('Boys', fs.readFileSync('./test/source-change-g07.html', 'utf-8'));
+    var knownArticles = parser.parseArticles('Boys', fs.readFileSync('./test/source-base.html', 'utf-8'));
+    var freshArticles = parser.parseArticles('Boys', fs.readFileSync('./test/source-change.html', 'utf-8'));
 
     it('finds the new articles', function() {
       var articleDiff = articleUtil.findDiff(freshArticles, knownArticles);
