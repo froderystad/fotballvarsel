@@ -7,4 +7,10 @@ client.sendEmail({
     "To": "frode.rystad@gmail.com",
     "Subject": "Test", 
     "TextBody": "Hilsen fra Fotballvarsel!"
+}, function(error, result) {
+    if(error) {
+        console.error("Unable to send via postmark: " + error.message);
+        return;
+    }
+    console.info("Sent to postmark for delivery")
 });
